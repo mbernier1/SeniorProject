@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearningWithFriends">
         <activity
+            android:name=".NumbersGame"
+            android:exported="false" />
+        <activity
             android:name=".LettersGame"
             android:exported="false" />
         <activity
