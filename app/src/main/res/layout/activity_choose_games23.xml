@@ -6,18 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ChooseAgeRange">
+    tools:context=".ChooseGames23">
 
     <Button
-        android:id="@+id/ages_2_3_button"
+        android:id="@+id/letters_game_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ages_2_3_button" />
+        android:text="@string/letters_game_button" />
 
     <Button
-        android:id="@+id/ages_4_5_button"
+        android:id="@+id/numbers_game_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ages_4_5_button" />
+        android:text="@string/numbers_game_button" />
+
+    <Button
+        android:id="@+id/colors_game_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/colors_game_button" />
 
 </LinearLayout>

@@ -23,4 +23,12 @@
     <string name="passwordTextBox">Password</string>
     <string name="signup_button">Signup</string>
     <string name="login_button">Login</string>
+    <string name="ages_2_3_button">Ages 2-3</string>
+    <string name="ages_4_5_button">Ages 4-5</string>
+    <string name="shapes_game_button">Shapes</string>
+    <string name="numbers_game_button">Numbers 123</string>
+    <string name="letters_game_button">Letters ABC</string>
+    <string name="colors_game_button">Colors</string>
+    <string name="family_members_game_button">Family Members</string>
+    <string name="body_parts_game_button">Body Parts</string>
 </resources>
