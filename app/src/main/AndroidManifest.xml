@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearningWithFriends">
         <activity
+            android:name=".BodyPartsGame"
+            android:exported="false" />
+        <activity
+            android:name=".FamilyMembersGame"
+            android:exported="false" />
+        <activity
+            android:name=".ColorsGame"
+            android:exported="false" />
+        <activity
+            android:name=".Registration"
+            android:exported="false" />
+        <activity
             android:name=".ChooseGames45"
             android:exported="false" />
         <activity
