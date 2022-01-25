@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LettersGame extends AppCompatActivity {
+
+
+public class LettersGame  extends AppCompatActivity {
 
 
     @Override
@@ -27,6 +29,7 @@ public class LettersGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(LettersGame.this,"This is a test", Toast.LENGTH_LONG).show();
+
 
                 /*
                 check if choice is correct
