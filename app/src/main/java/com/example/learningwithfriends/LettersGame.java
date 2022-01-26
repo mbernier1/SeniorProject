@@ -23,17 +23,28 @@ public class LettersGame  extends AppCompatActivity {
         TextView letter_2 = findViewById(R.id.random_letter_2);
         TextView letter_3 = findViewById(R.id.random_letter_3);
 
+
+
         ImageView random_letter_image = findViewById(R.id.image_of_random_letter);
 
-        letter_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(LettersGame.this,"This is a test", Toast.LENGTH_LONG).show();
+        int count = 1;
+        while(count<4) {
+
+            LettersGameLogic startGame = new LettersGameLogic();
+            startGame.RandomLetterGenerator();
+            //count += 1;
+
+
+            letter_1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
 
 
                 /*
                 check if choice is correct
                 if correct
+                    count++
                     play encouraging sound
                     move to next letter
                 else
@@ -41,42 +52,44 @@ public class LettersGame  extends AppCompatActivity {
                     try again
                  */
 
-            }
-        });
+                }
+            });
 
-        letter_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(LettersGame.this,"This is a test", Toast.LENGTH_LONG).show();
+            letter_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
 
  /*
                 check if choice is correct
                 if correct
+                    count++
                     play encouraging sound
                     move to next letter
                 else
                     play buzzer
                     try again
                  */
-            }
-        });
+                }
+            });
 
-        letter_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(LettersGame.this,"This is a test", Toast.LENGTH_LONG).show();
+            letter_3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
 
  /*
                 check if choice is correct
                 if correct
+                    count++
                     play encouraging sound
                     move to next letter
                 else
                     play buzzer
                     try again
                  */
-            }
-        });
-
+                }
+            });
+        }
     }
 }
