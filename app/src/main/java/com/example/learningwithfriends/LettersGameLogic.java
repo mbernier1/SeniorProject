@@ -9,7 +9,8 @@ import java.util.Random;
 import java.util.Set;
 
 public class LettersGameLogic {
-    public HashMap<String, String> letter_icons = new HashMap<String, String>();
+
+    public static HashMap<String, String> letter_icons = new HashMap<String, String>();
 
     public LettersGameLogic()
     {
@@ -58,7 +59,7 @@ public class LettersGameLogic {
         return letter_icons.values();
     }
 
-
+    public int sizeOfAlphabet() {return letter_icons.size(); }
 
     //  display icon
     //  announce letter

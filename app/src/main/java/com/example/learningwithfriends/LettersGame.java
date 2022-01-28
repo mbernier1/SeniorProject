@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Set;
 
 
 public class LettersGame  extends AppCompatActivity {
@@ -22,10 +23,10 @@ public class LettersGame  extends AppCompatActivity {
         TextView letter_1 = findViewById(R.id.random_letter_1);
         TextView letter_2 = findViewById(R.id.random_letter_2);
         TextView letter_3 = findViewById(R.id.random_letter_3);
+        TextView test = findViewById(R.id.test_view);
 
 
-
-        ImageView random_letter_image = findViewById(R.id.image_of_random_letter);
+        //ImageView random_letter_image = findViewById(R.id.image_of_random_letter);
 
         int count = 1;
         while(count<4) {
@@ -34,6 +35,30 @@ public class LettersGame  extends AppCompatActivity {
             startGame.RandomLetterGenerator();
             //count += 1;
 
+            Set<String> keys = LettersGameLogic.letter_icons.keySet();
+            for (String i: keys){
+                //Toast.makeText(LettersGame.this, LettersGameLogic.letter_icons.get(i), Toast.LENGTH_LONG).show();
+                //test = LettersGameLogic.letter_icons.get(i);
+
+                System.out.println(LettersGameLogic.letter_icons.get(i));
+            }
+            /*
+
+            HashMap <Integer,Integer> hm = new HashMap<Integer,Integer>();
+
+            Set<Integer> keys = hm.keySet();  //get all keys
+            for(Integer i: keys)
+            {
+                System.out.println(hm.get(i));
+            }
+             */
+            /*
+            for (Map.Entry<String,String> entry : map.entrySet()) {
+              String key = entry.getKey();
+              String value = entry.getValue();
+              // do stuff
+            }
+             */
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
