@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -32,17 +34,18 @@ public class LettersGame  extends AppCompatActivity {
         while(count<4) {
 
             LettersGameLogic startGame = new LettersGameLogic();
-            startGame.RandomLetterGenerator();
+            Object[] randlet = startGame.RandomLetterGenerator().toArray();
             //count += 1;
-            for ( String str : startGame)
+            /*for ( String str : startGame) {
                 System.out.println( str );
-            }
-            Object[] keys = LettersGameLogic.letter_icons.keySet().toArray();
-            for (int i = 0; i<keys.length; i++){
+            }*/
+            //List<String> randomLetters = new ArrayList<>(startGame.GetValues());
+
+            for (int i = 0; i<randlet.length; i++){
                 //Toast.makeText(LettersGame.this, LettersGameLogic.letter_icons.get(i), Toast.LENGTH_LONG).show();
                 //test = LettersGameLogic.letter_icons.get(i);
 
-                System.out.println(keys[i]);
+                System.out.println(randlet[i]);
             }
             /*
 
@@ -117,6 +120,7 @@ public class LettersGame  extends AppCompatActivity {
                  */
                 }
             });
+            count++;
         }
     }
 }

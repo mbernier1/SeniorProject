@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 public class LettersGameLogic {
@@ -46,14 +45,14 @@ public class LettersGameLogic {
 
     }
     //randomizes the letters so each time the game is played different letters will used
-    public void RandomLetterGenerator()
+    public List<String> RandomLetterGenerator()
     {
         List<String> randomLetters = new ArrayList<>(letter_icons.values());
         Collections.shuffle(randomLetters);
 
-        //return randomLetters;
-        int randomIndex = new Random().nextInt(randomLetters.size());
-        String randomLetterForDisplay = randomLetters.get(randomIndex);
+        return randomLetters;
+        //int randomIndex = new Random().nextInt(randomLetters.size());
+        //String randomLetterForDisplay = randomLetters.get(randomIndex);
     }
 
     public Set<String> GetKeys() {
