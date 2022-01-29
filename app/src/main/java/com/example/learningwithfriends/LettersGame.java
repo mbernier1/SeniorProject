@@ -34,13 +34,15 @@ public class LettersGame  extends AppCompatActivity {
             LettersGameLogic startGame = new LettersGameLogic();
             startGame.RandomLetterGenerator();
             //count += 1;
-
-            Set<String> keys = LettersGameLogic.letter_icons.keySet();
-            for (String i: keys){
+            for ( String str : startGame)
+                System.out.println( str );
+            }
+            Object[] keys = LettersGameLogic.letter_icons.keySet().toArray();
+            for (int i = 0; i<keys.length; i++){
                 //Toast.makeText(LettersGame.this, LettersGameLogic.letter_icons.get(i), Toast.LENGTH_LONG).show();
                 //test = LettersGameLogic.letter_icons.get(i);
 
-                System.out.println(LettersGameLogic.letter_icons.get(i));
+                System.out.println(keys[i]);
             }
             /*
 
