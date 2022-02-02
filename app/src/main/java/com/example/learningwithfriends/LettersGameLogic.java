@@ -15,11 +15,11 @@ public class LettersGameLogic {
     public LettersGameLogic()
     {
         letter_icons.put("A", R.drawable.ic_3_dots_background);
-        /*letter_icons.put("B", "BALL");
-        letter_icons.put("C", "CAR");
-        letter_icons.put("D", "DUCK");
-        letter_icons.put("E", "ELEPHANT");
-        letter_icons.put("F", "FRISBEE");
+        letter_icons.put("B", R.drawable.ic_eye_foreground);
+        letter_icons.put("C", R.drawable.ic_number_1_foreground);
+        letter_icons.put("D", R.drawable.ic_radio_foreground);
+        letter_icons.put("E", R.drawable.ic_ramen_foreground);
+        /*letter_icons.put("F", "FRISBEE");
         letter_icons.put("G", "GIRAFFE");
         letter_icons.put("H", "HIPPO");
         letter_icons.put("I", "ICE CREAM");
