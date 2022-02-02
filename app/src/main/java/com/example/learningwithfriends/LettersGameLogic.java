@@ -10,13 +10,12 @@ import java.util.Set;
 
 public class LettersGameLogic {
 
-    public static HashMap<String, String> letter_icons = new HashMap<String, String>();
+    public static HashMap<String, Integer> letter_icons = new HashMap<String, Integer>();
 
     public LettersGameLogic()
     {
-        //HashMap<String, String> temp = letter_icons;
-        letter_icons.put("A", "APPLE");
-        letter_icons.put("B", "BALL");
+        letter_icons.put("A", R.drawable.ic_3_dots_background);
+        /*letter_icons.put("B", "BALL");
         letter_icons.put("C", "CAR");
         letter_icons.put("D", "DUCK");
         letter_icons.put("E", "ELEPHANT");
@@ -40,9 +39,7 @@ public class LettersGameLogic {
         letter_icons.put("W", "WORLD");
         letter_icons.put("X", "XYLOPHONE");
         letter_icons.put("Y", "YO-YO");
-        letter_icons.put("Z", "ZEBRA");
-
-
+        letter_icons.put("Z", "ZEBRA");*/
     }
     //randomizes the letters so each time the game is played different letters will used
     public List<String> RandomKeyGenerator()
@@ -50,8 +47,8 @@ public class LettersGameLogic {
         List<String> randomLetters = new ArrayList<>(letter_icons.keySet());
         Collections.shuffle(randomLetters);
 
-        List<String> randomIcons = new ArrayList<>(letter_icons.values());
-        Collections.shuffle(randomLetters);
+        //List<String> randomIcons = new ArrayList<>(letter_icons.values());
+        //Collections.shuffle(randomLetters);
         //HashMap<String, String> randomMap = new HashMap<String, String>(randomLetters, randomIcons);
 
         return randomLetters;
@@ -62,14 +59,15 @@ public class LettersGameLogic {
     public Set<String> GetKeys() {
         return letter_icons.keySet();
     }
-    public Collection<String> GetValues() {
+    /*public Collection<String> GetValues() {
         return letter_icons.values();
     }
 
-    public static String GetSingleKey(String key) {
+    public static String GetSingleKey(int key) {
+
         return letter_icons.get(key);
     }
-
+*/
     public int sizeOfAlphabet() {return letter_icons.size(); }
 
     //  display icon

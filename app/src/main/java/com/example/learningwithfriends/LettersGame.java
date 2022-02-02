@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -27,64 +29,64 @@ public class LettersGame  extends AppCompatActivity {
         TextView letter_1 = findViewById(R.id.random_letter_1);
         TextView letter_2 = findViewById(R.id.random_letter_2);
         TextView letter_3 = findViewById(R.id.random_letter_3);
-        TextView test = findViewById(R.id.test_view);
+        ImageView imageView = findViewById(R.id.image_of_random_letter);
 
-
+        //List<String> randomLetters = new ArrayList<>(letter_icons.values());
+        //Collections.shuffle(randomLetters);
         //ImageView random_letter_image = findViewById(R.id.image_of_random_letter);
 
+        LettersGameLogic.letter_icons.get(3);
         int count = 1;
         while(count<4) {
 
             LettersGameLogic startGame = new LettersGameLogic();
-            Object[] keys = startGame.GetKeys().toArray();
-            Object[] values = startGame.GetValues().toArray();
 
+            //Object list of letters in random order
             Object[] randlet = startGame.RandomKeyGenerator().toArray();
 
-            Object[] randKeys = startGame.GetKeys().toArray();
-            Object[] randValues = startGame.GetValues().toArray();
-            startGame.GetValues();
 
-            //count += 1;
+            // string containing 1 letter form the object list
+            String choice_1 = (String) randlet[0];
+            //String choice_2 = (String) randlet[1];
+            //String choice_3 = (String) randlet[2];
+            int imageToDisplay;
+            //imageView.setImageResource((int) hashMap.get("img"));
 
-            for (int i = 0; i<randlet.length; i++){
+            //iterates through map looking for key from random list
+            for (String key : LettersGameLogic.letter_icons.keySet()) {
+                System.out.println("Key = " + key);
+                System.out.println("Choice = " + choice_1);
 
-                System.out.println(randlet[i]);
+                //once correct key is found, retrieves image to display
+                if(key.equals(choice_1)){
+                    System.out.println("Found the key");
+                    System.out.println(LettersGameLogic.letter_icons);
+
+                    //picture to display
+                    //imageToDisplay = LettersGameLogic.letter_icons.get(key);
+                    imageView.setImageResource(LettersGameLogic.letter_icons.get(key));
+                } else{
+                    System.out.println("Key Not Found");
+
+                }
             }
-            String str = randlet[25].toString();
+
+/*
+            Iterator iter = LettersGameLogic.letter_icons.keySet().iterator();
+            int count2 = 0;
+            if(count2 < 25) {
+                for (int i = 0; i < LettersGameLogic.letter_icons.size(); i++) {
+                    if (choice_1.equals(LettersGameLogic.GetSingleKey(i))) {
+                        System.out.println("Letter Found");
+                    } else {
+                        System.out.println("Letter not found");
+                    }
+                }
+            }*/
 
 
-            System.out.println(randlet[3]);
-            System.out.println(str);
-            System.out.println(startGame);
 
-            for (int i = 0; i < 26; i++) {
-                System.out.println(Arrays.toString(keys));
-                System.out.println(Arrays.toString(values));
-                i++;
-            }
-            for (int i = 0; i < 26; i++) {
-                System.out.println(Arrays.toString(randKeys));
-                System.out.println(Arrays.toString(randValues));
-                i++;
-            }
-            /*
 
-            HashMap <Integer,Integer> hm = new HashMap<Integer,Integer>();
-
-            Set<Integer> keys = hm.keySet();  //get all keys
-            for(Integer i: keys)
-            {
-                System.out.println(hm.get(i));
-            }
-             */
-            /*
-            for (Map.Entry<String,String> entry : map.entrySet()) {
-              String key = entry.getKey();
-              String value = entry.getValue();
-              // do stuff
-            }
-             */
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override

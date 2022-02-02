@@ -7,20 +7,13 @@
     android:orientation="vertical"
     tools:context=".LettersGame">
 
-    <TextView
+    <ImageView
         android:id="@+id/image_of_random_letter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="0"
-        android:textSize="100dp"
-        android:clickable="true"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/testView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:clickable="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
