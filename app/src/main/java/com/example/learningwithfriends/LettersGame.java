@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -34,18 +36,37 @@ public class LettersGame  extends AppCompatActivity {
         while(count<4) {
 
             LettersGameLogic startGame = new LettersGameLogic();
-            Object[] randlet = startGame.RandomLetterGenerator().toArray();
+            Object[] keys = startGame.GetKeys().toArray();
+            Object[] values = startGame.GetValues().toArray();
+
+            Object[] randlet = startGame.RandomKeyGenerator().toArray();
+
+            Object[] randKeys = startGame.GetKeys().toArray();
+            Object[] randValues = startGame.GetValues().toArray();
+            startGame.GetValues();
+
             //count += 1;
-            /*for ( String str : startGame) {
-                System.out.println( str );
-            }*/
-            //List<String> randomLetters = new ArrayList<>(startGame.GetValues());
 
             for (int i = 0; i<randlet.length; i++){
-                //Toast.makeText(LettersGame.this, LettersGameLogic.letter_icons.get(i), Toast.LENGTH_LONG).show();
-                //test = LettersGameLogic.letter_icons.get(i);
 
                 System.out.println(randlet[i]);
+            }
+            String str = randlet[25].toString();
+
+
+            System.out.println(randlet[3]);
+            System.out.println(str);
+            System.out.println(startGame);
+
+            for (int i = 0; i < 26; i++) {
+                System.out.println(Arrays.toString(keys));
+                System.out.println(Arrays.toString(values));
+                i++;
+            }
+            for (int i = 0; i < 26; i++) {
+                System.out.println(Arrays.toString(randKeys));
+                System.out.println(Arrays.toString(randValues));
+                i++;
             }
             /*
 

@@ -14,8 +14,8 @@ public class LettersGameLogic {
 
     public LettersGameLogic()
     {
-        HashMap<String, String> temp = letter_icons;
-        temp.put("A", "APPLE");
+        //HashMap<String, String> temp = letter_icons;
+        letter_icons.put("A", "APPLE");
         letter_icons.put("B", "BALL");
         letter_icons.put("C", "CAR");
         letter_icons.put("D", "DUCK");
@@ -45,10 +45,14 @@ public class LettersGameLogic {
 
     }
     //randomizes the letters so each time the game is played different letters will used
-    public List<String> RandomLetterGenerator()
+    public List<String> RandomKeyGenerator()
     {
-        List<String> randomLetters = new ArrayList<>(letter_icons.values());
+        List<String> randomLetters = new ArrayList<>(letter_icons.keySet());
         Collections.shuffle(randomLetters);
+
+        List<String> randomIcons = new ArrayList<>(letter_icons.values());
+        Collections.shuffle(randomLetters);
+        //HashMap<String, String> randomMap = new HashMap<String, String>(randomLetters, randomIcons);
 
         return randomLetters;
         //int randomIndex = new Random().nextInt(randomLetters.size());
@@ -60,6 +64,10 @@ public class LettersGameLogic {
     }
     public Collection<String> GetValues() {
         return letter_icons.values();
+    }
+
+    public static String GetSingleKey(String key) {
+        return letter_icons.get(key);
     }
 
     public int sizeOfAlphabet() {return letter_icons.size(); }
