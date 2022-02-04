@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textSize="100sp"
             android:clickable="true"
-            android:text="A" />
+            android:text=""/>
         <TextView
             android:id="@+id/random_letter_2"
             android:layout_width="wrap_content"
@@ -37,13 +37,12 @@
             android:layout_marginRight="25dp"
             android:textSize="100sp"
             android:clickable="true"
-            android:text="B" />
+            android:text=""/>
         <TextView
             android:id="@+id/random_letter_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="100sp"
-            android:clickable="true"
-            android:text="C" />
+            android:clickable="true"/>
     </LinearLayout>
 </LinearLayout>

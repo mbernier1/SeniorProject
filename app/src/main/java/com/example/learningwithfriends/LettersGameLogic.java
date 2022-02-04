@@ -2,7 +2,6 @@ package com.example.learningwithfriends;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -47,13 +46,7 @@ public class LettersGameLogic {
         List<String> randomLetters = new ArrayList<>(letter_icons.keySet());
         Collections.shuffle(randomLetters);
 
-        //List<String> randomIcons = new ArrayList<>(letter_icons.values());
-        //Collections.shuffle(randomLetters);
-        //HashMap<String, String> randomMap = new HashMap<String, String>(randomLetters, randomIcons);
-
         return randomLetters;
-        //int randomIndex = new Random().nextInt(randomLetters.size());
-        //String randomLetterForDisplay = randomLetters.get(randomIndex);
     }
 
     public Set<String> GetKeys() {
@@ -62,12 +55,12 @@ public class LettersGameLogic {
     /*public Collection<String> GetValues() {
         return letter_icons.values();
     }
-
-    public static String GetSingleKey(int key) {
+*/
+    public static Integer GetSingleKey(String key) {
 
         return letter_icons.get(key);
     }
-*/
+
     public int sizeOfAlphabet() {return letter_icons.size(); }
 
     //  display icon

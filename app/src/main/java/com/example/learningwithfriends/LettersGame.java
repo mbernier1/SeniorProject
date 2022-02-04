@@ -13,13 +13,17 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 
 public class LettersGame  extends AppCompatActivity {
 
+
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +35,7 @@ public class LettersGame  extends AppCompatActivity {
         TextView letter_3 = findViewById(R.id.random_letter_3);
         ImageView imageView = findViewById(R.id.image_of_random_letter);
 
-        //List<String> randomLetters = new ArrayList<>(letter_icons.values());
-        //Collections.shuffle(randomLetters);
-        //ImageView random_letter_image = findViewById(R.id.image_of_random_letter);
-
-        LettersGameLogic.letter_icons.get(3);
-        int count = 1;
-        while(count<4) {
+        if(count < 3) {
 
             LettersGameLogic startGame = new LettersGameLogic();
 
@@ -45,55 +43,53 @@ public class LettersGame  extends AppCompatActivity {
             Object[] randlet = startGame.RandomKeyGenerator().toArray();
 
 
-            // string containing 1 letter form the object list
+            // strings containing first 3 letters form the randomized object list
+            // of keys from the alphabet
             String choice_1 = (String) randlet[0];
-            //String choice_2 = (String) randlet[1];
-            //String choice_3 = (String) randlet[2];
-            int imageToDisplay;
-            //imageView.setImageResource((int) hashMap.get("img"));
+            String choice_2 = (String) randlet[1];
+            String choice_3 = (String) randlet[2];
 
-            //iterates through map looking for key from random list
-            for (String key : LettersGameLogic.letter_icons.keySet()) {
-                System.out.println("Key = " + key);
-                System.out.println("Choice = " + choice_1);
+            //setting image from first key of randomized object list
+            imageView.setImageResource(LettersGameLogic.letter_icons.get(choice_1));
 
-                //once correct key is found, retrieves image to display
-                if(key.equals(choice_1)){
-                    System.out.println("Found the key");
-                    System.out.println(LettersGameLogic.letter_icons);
+            //setting first letters to each choice
+            //letter_1.setText(choice_1);
+            //letter_2.setText(choice_2);
+            //letter_3.setText(choice_3);
 
-                    //picture to display
-                    //imageToDisplay = LettersGameLogic.letter_icons.get(key);
-                    imageView.setImageResource(LettersGameLogic.letter_icons.get(key));
-                } else{
-                    System.out.println("Key Not Found");
+            List<String> choiceList = new ArrayList<>();
+            choiceList.add(choice_1);
+            choiceList.add(choice_2);
+            choiceList.add(choice_3);
 
-                }
-            }
+            Random r = new Random();
+            int i1 = r.nextInt(3);
 
-/*
-            Iterator iter = LettersGameLogic.letter_icons.keySet().iterator();
-            int count2 = 0;
-            if(count2 < 25) {
-                for (int i = 0; i < LettersGameLogic.letter_icons.size(); i++) {
-                    if (choice_1.equals(LettersGameLogic.GetSingleKey(i))) {
-                        System.out.println("Letter Found");
-                    } else {
-                        System.out.println("Letter not found");
-                    }
-                }
-            }*/
+            Collections.shuffle(choiceList);
+            String correctAnswer = choiceList.get(i1);
 
-
+            letter_1.setText(choiceList.get(0));
+            letter_2.setText(choiceList.get(1));
+            letter_3.setText(choiceList.get(2));
 
 
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
 
+                    if (letter_1.getText() == correctAnswer)
+                    {
+                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
+                        count++;
+                        //play sound
+                        //restart game
+                    }
+                    else{
+                        Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
 
+                    }
                 /*
                 check if choice is correct
                 if correct
@@ -111,7 +107,17 @@ public class LettersGame  extends AppCompatActivity {
             letter_2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
+                    if (letter_2.getText() == correctAnswer)
+                    {
+                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
+                        count++;
+
+                    }
+                    else{
+                        Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
+
+                    }
 
  /*
                 check if choice is correct
@@ -129,7 +135,16 @@ public class LettersGame  extends AppCompatActivity {
             letter_3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
+                    if (letter_3.getText() == correctAnswer)
+                    {
+                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
+                        count++;
+                    }
+                    else{
+                        Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
+
+                    }
 
  /*
                 check if choice is correct
@@ -143,7 +158,8 @@ public class LettersGame  extends AppCompatActivity {
                  */
                 }
             });
-            count++;
+            //count++;
         }
+
     }
 }
