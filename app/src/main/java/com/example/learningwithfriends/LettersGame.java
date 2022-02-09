@@ -63,16 +63,14 @@ public class LettersGame  extends AppCompatActivity {
             choiceList.add(choice_3);
 
             Random r = new Random();
-            int i1 = r.nextInt(3);
+            int i = r.nextInt(3);
 
             Collections.shuffle(choiceList);
-            String correctAnswer = choiceList.get(i1);
+            String correctAnswer = choiceList.get(i);
 
             letter_1.setText(choiceList.get(0));
             letter_2.setText(choiceList.get(1));
             letter_3.setText(choiceList.get(2));
-
-
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
