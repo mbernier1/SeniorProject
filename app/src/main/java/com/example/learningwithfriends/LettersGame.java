@@ -43,7 +43,7 @@ public class LettersGame  extends AppCompatActivity {
             Object[] randlet = startGame.RandomKeyGenerator().toArray();
 
 
-            // strings containing first 3 letters form the randomized object list
+            // strings containing first 3 letters from the randomized object list
             // of keys from the alphabet
             String choice_1 = (String) randlet[0];
             String choice_2 = (String) randlet[1];
@@ -66,7 +66,7 @@ public class LettersGame  extends AppCompatActivity {
             int i = r.nextInt(3);
 
             Collections.shuffle(choiceList);
-            String correctAnswer = choiceList.get(i);
+            String correctAnswer = choiceList.get(0);
 
             letter_1.setText(choiceList.get(0));
             letter_2.setText(choiceList.get(1));
