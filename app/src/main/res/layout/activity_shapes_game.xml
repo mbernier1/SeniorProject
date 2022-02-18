@@ -15,14 +15,14 @@
     android:orientation="horizontal"
     android:gravity="center">
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/shape_image_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/shape_image_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
@@ -35,14 +35,14 @@
         android:paddingBottom="100dp"
         android:gravity="center">
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/shape_image_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/shape_image_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
@@ -53,14 +53,14 @@
         android:orientation="horizontal"
         android:gravity="center">
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/shape_image_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/shape_image_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
