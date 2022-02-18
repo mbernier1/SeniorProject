@@ -15,21 +15,21 @@
         android:layout_gravity="start"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:id="@+id/random_number_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="100sp" />
 
-        <TextView
+        <ImageView
             android:id="@+id/random_number_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="100sp" />
 
-        <TextView
+        <ImageView
             android:id="@+id/random_number_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,25 +45,22 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/random_number_image_1"
+            android:id="@+id/random_number_dots_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_3_dots_foreground" />
+            android:layout_weight="1" />
 
         <ImageView
-            android:id="@+id/random_number_image_2"
+            android:id="@+id/random_number_dots_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_5_dots_foreground" />
+            android:layout_weight="1" />
 
         <ImageView
-            android:id="@+id/random_number_image_3"
+            android:id="@+id/random_number_dots_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_4_dots_foreground" />
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

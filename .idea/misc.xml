@@ -20,6 +20,7 @@
         <entry key="..\:/SeniorProject/app/src/main/res/layout/activity_registration.xml" value="0.3546875" />
         <entry key="..\:/SeniorProject/app/src/main/res/layout/activity_shapes_game.xml" value="0.3546875" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/drawable/ic_body_part_foot_background.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/drawable/ic_shape_circle_BW_background.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/layout/activity_colors_game.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/layout/activity_family_members_game.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/layout/activity_letters_game.xml" value="0.264" />
@@ -31,6 +32,8 @@
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/mipmap-anydpi-v26/ic_2_dots.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/mipmap-anydpi-v26/ic_3_dots.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/mipmap-anydpi-v26/ic_number_1.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/mipmap-anydpi-v26/ic_shape_rectangle_BW.xml" value="0.13229166666666667" />
+        <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/mipmap-anydpi-v26/ic_shape_square_bw_round.xml" value="0.13229166666666667" />
       </map>
     </option>
   </component>

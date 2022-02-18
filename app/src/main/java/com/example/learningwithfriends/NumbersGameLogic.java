@@ -32,4 +32,12 @@ public class NumbersGameLogic {
 
         return randomNumbers;
     }
+
+    public List<Integer> RandomValueGenerator()
+    {
+        List<Integer> randomNumbers = new ArrayList<>(numbers.values());
+        Collections.shuffle(randomNumbers);
+
+        return randomNumbers;
+    }
 }
