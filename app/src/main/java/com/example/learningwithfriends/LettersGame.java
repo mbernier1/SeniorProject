@@ -3,6 +3,7 @@ package com.example.learningwithfriends;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,8 +23,10 @@ import java.util.Set;
 
 public class LettersGame  extends AppCompatActivity {
 
+    private String KEY_INDEX = "index";
 
-    int count = 0;
+
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,11 @@ public class LettersGame  extends AppCompatActivity {
         TextView letter_3 = findViewById(R.id.random_letter_3);
         ImageView imageView = findViewById(R.id.image_of_random_letter);
 
-        if(count < 3) {
+        //int currentIndex =   savedInstanceState.getInt(KEY_INDEX) ? 0 : count;
+        //count = currentIndex;
+
+
+        if (count < 3) {
 
             LettersGameLogic startGame = new LettersGameLogic();
 
@@ -77,15 +84,13 @@ public class LettersGame  extends AppCompatActivity {
                 public void onClick(View view) {
                     //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
 
-                    if (letter_1.getText() == correctAnswer)
-                    {
+                    if (letter_1.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
                         count++;
 
                         //play sound
                         //restart game
-                    }
-                    else{
+                    } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
 
                     }
@@ -107,13 +112,11 @@ public class LettersGame  extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-                    if (letter_2.getText() == correctAnswer)
-                    {
+                    if (letter_2.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
                         count++;
 
-                    }
-                    else{
+                    } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
 
                     }
@@ -135,12 +138,10 @@ public class LettersGame  extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-                    if (letter_3.getText() == correctAnswer)
-                    {
+                    if (letter_3.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
                         count++;
-                    }
-                    else{
+                    } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
 
                     }
@@ -171,6 +172,13 @@ public class LettersGame  extends AppCompatActivity {
 
         super.onSaveInstanceState(outState);
     }
+
     */
+
+    @Override
+    public void onSaveInstanceState (Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(KEY_INDEX, count);
+    }
 
 }
