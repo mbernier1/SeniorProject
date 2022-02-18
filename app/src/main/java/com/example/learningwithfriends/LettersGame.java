@@ -81,6 +81,7 @@ public class LettersGame  extends AppCompatActivity {
                     {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
                         count++;
+
                         //play sound
                         //restart game
                     }
@@ -158,6 +159,18 @@ public class LettersGame  extends AppCompatActivity {
             });
             //count++;
         }
+        else{
+            Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
+        }
 
     }
+/*
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("YourTextViewTextIdentifier", yourTextView.getText().toString());
+
+        super.onSaveInstanceState(outState);
+    }
+    */
+
 }
