@@ -1,8 +1,12 @@
 package com.example.learningwithfriends;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -21,15 +25,21 @@ import java.util.Random;
 import java.util.Set;
 
 
+
 public class LettersGame  extends AppCompatActivity {
+    //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+    private final String KEY_INDEX = "index";
 
-    private String KEY_INDEX = "index";
 
+    GlobalVariables global = new GlobalVariables();
+    private int count = global.GetCount();
 
-    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null){
+            count = savedInstanceState.getInt(KEY_INDEX);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letters_game);
 
@@ -42,7 +52,7 @@ public class LettersGame  extends AppCompatActivity {
         //count = currentIndex;
 
 
-        if (count < 3) {
+        //if (count < 3) {
 
             LettersGameLogic startGame = new LettersGameLogic();
 
@@ -85,14 +95,31 @@ public class LettersGame  extends AppCompatActivity {
                     //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
 
                     if (letter_1.getText() == correctAnswer) {
-                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
+                        global.SetCount(count);
+                        //savedInstanceState.putInt(KEY_INDEX, count);
+
+                        if (count >= 3){
+                            Intent intent = new Intent(LettersGame.this, ChooseGames23.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                            Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+                        }
+                        //Intent intent = new Intent(LettersGame.this, LettersGame.class);
+                        //intent.putExtra(KEY_INDEX, count);
+                        //startActivity(intent);
+
 
                         //play sound
                         //restart game
                     } else {
-                        Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
+                        onCreate(savedInstanceState);
 
+                        Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
                     }
                 /*
                 check if choice is correct
@@ -141,6 +168,7 @@ public class LettersGame  extends AppCompatActivity {
                     if (letter_3.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
                         count++;
+
                     } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
 
@@ -159,10 +187,12 @@ public class LettersGame  extends AppCompatActivity {
                 }
             });
             //count++;
-        }
-        else{
-            Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
-        }
+        //}
+        //else{
+        //    Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
+        //}
+
+
 
     }
 /*
@@ -177,8 +207,16 @@ public class LettersGame  extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState (Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+
         savedInstanceState.putInt(KEY_INDEX, count);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        // get values from saved state
+        count = savedInstanceState.getInt(KEY_INDEX);
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
 }
