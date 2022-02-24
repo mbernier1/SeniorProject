@@ -33,26 +33,33 @@ public class LettersGame  extends AppCompatActivity {
 
     GlobalVariables global = new GlobalVariables();
     private int count = global.GetCount();
-
+    TextView letter_1;
+    TextView letter_2;
+    TextView letter_3;
+    ImageView imageView;
+    int m_count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (savedInstanceState != null){
+
+        count = getIntent().getIntExtra(KEY_INDEX, count);
+
+        /*if (savedInstanceState != null){
             count = savedInstanceState.getInt(KEY_INDEX);
-        }
+        }*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letters_game);
 
-        TextView letter_1 = findViewById(R.id.random_letter_1);
-        TextView letter_2 = findViewById(R.id.random_letter_2);
-        TextView letter_3 = findViewById(R.id.random_letter_3);
-        ImageView imageView = findViewById(R.id.image_of_random_letter);
+        letter_1 = findViewById(R.id.random_letter_1);
+        letter_2 = findViewById(R.id.random_letter_2);
+        letter_3 = findViewById(R.id.random_letter_3);
+        imageView = findViewById(R.id.image_of_random_letter);
 
         //int currentIndex =   savedInstanceState.getInt(KEY_INDEX) ? 0 : count;
         //count = currentIndex;
 
 
-        //if (count < 3) {
+        if (count < 3) {
 
             LettersGameLogic startGame = new LettersGameLogic();
 
@@ -74,13 +81,13 @@ public class LettersGame  extends AppCompatActivity {
             //letter_2.setText(choice_2);
             //letter_3.setText(choice_3);
 
+            //Random r = new Random();
+            //int i = r.nextInt(3);
+
             List<String> choiceList = new ArrayList<>();
             choiceList.add(choice_1);
             choiceList.add(choice_2);
             choiceList.add(choice_3);
-
-            Random r = new Random();
-            int i = r.nextInt(3);
 
             Collections.shuffle(choiceList);
             String correctAnswer = choiceList.get(0);
@@ -100,7 +107,7 @@ public class LettersGame  extends AppCompatActivity {
                         global.SetCount(count);
                         //savedInstanceState.putInt(KEY_INDEX, count);
 
-                        if (count >= 3){
+                        if (count == 3){
                             Intent intent = new Intent(LettersGame.this, ChooseGames23.class);
                             startActivity(intent);
                         }
@@ -109,9 +116,9 @@ public class LettersGame  extends AppCompatActivity {
                             Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
 
                         }
-                        //Intent intent = new Intent(LettersGame.this, LettersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
+                        Intent intent = new Intent(LettersGame.this, LettersGame.class);
+                        intent.putExtra(KEY_INDEX, count);
+                        startActivity(intent);
 
 
                         //play sound
@@ -187,10 +194,12 @@ public class LettersGame  extends AppCompatActivity {
                 }
             });
             //count++;
-        //}
-        //else{
-        //    Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
-        //}
+        }
+        else{
+            Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LettersGame.this, ChooseGames23.class);
+            startActivity(intent);
+        }
 
 
 
