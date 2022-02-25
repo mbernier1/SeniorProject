@@ -75,13 +75,8 @@ public class LettersGame  extends AppCompatActivity {
             //setting image from first key of randomized object list
             imageView.setImageResource(LettersGameLogic.letter_icons.get(choice_1));
 
-            //setting first letters to each choice
-            //letter_1.setText(choice_1);
-            //letter_2.setText(choice_2);
-            //letter_3.setText(choice_3);
-
-            //Random r = new Random();
-            //int i = r.nextInt(3);
+            Random r = new Random();
+            int i = r.nextInt(3);
 
             List<String> choiceList = new ArrayList<>();
             choiceList.add(choice_1);
@@ -89,15 +84,19 @@ public class LettersGame  extends AppCompatActivity {
             choiceList.add(choice_3);
 
             Collections.shuffle(choiceList);
-            String correctAnswer = choiceList.get(0);
-            //List<String> randomPicks = pickNRandom(choiceList, 3);
+            String correctAnswer = choiceList.get(i);
 
-            List<String> i = 3 > choiceList.size() ? choiceList.subList(0, choiceList.size()) : choiceList.subList(0, 3);
+            //List<String> i = 3 > choiceList.size() ? choiceList.subList(0, choiceList.size()) : choiceList.subList(0, 3);
 
+            Toast.makeText(this, "random str i = " + correctAnswer
+                    + "  choice 1 from ranlet = " + choice_1
+                    + "  choice 1 from ranlet = " + choice_2
+                    + "  choice 1 from ranlet = " + choice_3
+                    + "  text in first box is = " + letter_1.getText(), Toast.LENGTH_LONG).show();
 
-            letter_1.setText(i.get(0));
-            letter_2.setText(i.get(1));
-            letter_3.setText(i.get(2));
+            letter_1.setText(choice_1);
+            letter_2.setText(choice_2);
+            letter_3.setText(choice_3);
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -190,11 +189,4 @@ public class LettersGame  extends AppCompatActivity {
         count = savedInstanceState.getInt(KEY_INDEX);
         super.onRestoreInstanceState(savedInstanceState);
     }
-
-    public static List<String> pickNRandom(List<String> lst, int n) {
-        List<String> copy = new ArrayList<String>(lst);
-        Collections.shuffle(copy);
-        return n > copy.size() ? copy.subList(0, copy.size()) : copy.subList(0, n);
-    }
-
 }

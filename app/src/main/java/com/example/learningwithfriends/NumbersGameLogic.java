@@ -11,31 +11,21 @@ public class NumbersGameLogic {
 
 
     public NumbersGameLogic(){
-        numbers.put(R.mipmap.ic_number_1, R.mipmap.ic_1_dot);
-        numbers.put(R.mipmap.ic_number_2, R.mipmap.ic_2_dots);
-        numbers.put(R.mipmap.ic_number_3, R.mipmap.ic_3_dots);
-        numbers.put(R.mipmap.ic_number_4, R.mipmap.ic_4_dots);
-        numbers.put(R.mipmap.ic_number_5, R.mipmap.ic_5_dots);
-        numbers.put(R.mipmap.ic_number_6, R.mipmap.ic_6_dots);
-        numbers.put(R.mipmap.ic_number_7, R.mipmap.ic_7_dots);
-        numbers.put(R.mipmap.ic_number_8, R.mipmap.ic_8_dots);
-        numbers.put(R.mipmap.ic_number_9, R.mipmap.ic_9_dots);
-
-
+        numbers.put(R.mipmap.ic_number_1_foreground, R.mipmap.ic_1_dot_foreground);
+        numbers.put(R.mipmap.ic_number_2_foreground, R.mipmap.ic_2_dots_foreground);
+        numbers.put(R.mipmap.ic_number_3_foreground, R.mipmap.ic_3_dots_foreground);
+        numbers.put(R.mipmap.ic_number_4_foreground, R.mipmap.ic_4_dots_foreground);
+        numbers.put(R.mipmap.ic_number_5_foreground, R.mipmap.ic_5_dots_foreground);
+        numbers.put(R.mipmap.ic_number_6_foreground, R.mipmap.ic_6_dots_foreground);
+        numbers.put(R.mipmap.ic_number_7_foreground, R.mipmap.ic_7_dots_foreground);
+        numbers.put(R.mipmap.ic_number_8_foreground, R.mipmap.ic_8_dots_foreground);
+        numbers.put(R.mipmap.ic_number_9_foreground, R.mipmap.ic_9_dots_foreground);
     }
 
     //randomizes the letters so each time the game is played different letters will used
     public List<Integer> RandomKeyGenerator()
     {
         List<Integer> randomNumbers = new ArrayList<>(numbers.keySet());
-        Collections.shuffle(randomNumbers);
-
-        return randomNumbers;
-    }
-
-    public List<Integer> RandomValueGenerator()
-    {
-        List<Integer> randomNumbers = new ArrayList<>(numbers.values());
         Collections.shuffle(randomNumbers);
 
         return randomNumbers;

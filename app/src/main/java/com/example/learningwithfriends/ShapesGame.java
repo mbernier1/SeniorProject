@@ -3,6 +3,7 @@ package com.example.learningwithfriends;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -60,5 +61,69 @@ public class ShapesGame extends AppCompatActivity {
         imageView4.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(0)));
         imageView6.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(3)));
         imageView8.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(1)));
+
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        imageView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 }

@@ -48,6 +48,7 @@
             android:id="@+id/random_number_dots_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="yellow"
             android:layout_weight="1" />
 
         <ImageView
