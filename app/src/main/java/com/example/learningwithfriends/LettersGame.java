@@ -37,7 +37,6 @@ public class LettersGame  extends AppCompatActivity {
     TextView letter_2;
     TextView letter_3;
     ImageView imageView;
-    int m_count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +90,14 @@ public class LettersGame  extends AppCompatActivity {
 
             Collections.shuffle(choiceList);
             String correctAnswer = choiceList.get(0);
+            //List<String> randomPicks = pickNRandom(choiceList, 3);
 
-            letter_1.setText(choiceList.get(0));
-            letter_2.setText(choiceList.get(1));
-            letter_3.setText(choiceList.get(2));
+            List<String> i = 3 > choiceList.size() ? choiceList.subList(0, choiceList.size()) : choiceList.subList(0, 3);
+
+
+            letter_1.setText(i.get(0));
+            letter_2.setText(i.get(1));
+            letter_3.setText(i.get(2));
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,17 +108,11 @@ public class LettersGame  extends AppCompatActivity {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
-                        //savedInstanceState.putInt(KEY_INDEX, count);
 
-                        if (count == 3){
-                            Intent intent = new Intent(LettersGame.this, ChooseGames23.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                            Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
 
-                        }
+
                         Intent intent = new Intent(LettersGame.this, LettersGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
@@ -124,21 +121,8 @@ public class LettersGame  extends AppCompatActivity {
                         //play sound
                         //restart game
                     } else {
-                        onCreate(savedInstanceState);
-
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
                     }
-                /*
-                check if choice is correct
-                if correct
-                    count++
-                    play encouraging sound
-                    move to next letter
-                else
-                    play buzzer
-                    try again
-                 */
-
                 }
             });
 
@@ -147,24 +131,20 @@ public class LettersGame  extends AppCompatActivity {
                 public void onClick(View view) {
                     //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
                     if (letter_2.getText() == correctAnswer) {
-                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
+                        global.SetCount(count);
 
+                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                        Intent intent = new Intent(LettersGame.this, LettersGame.class);
+                        intent.putExtra(KEY_INDEX, count);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
-
                     }
-
- /*
-                check if choice is correct
-                if correct
-                    count++
-                    play encouraging sound
-                    move to next letter
-                else
-                    play buzzer
-                    try again
-                 */
                 }
             });
 
@@ -173,46 +153,29 @@ public class LettersGame  extends AppCompatActivity {
                 public void onClick(View view) {
                     //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
                     if (letter_3.getText() == correctAnswer) {
-                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
+                        global.SetCount(count);
 
+                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                        Intent intent = new Intent(LettersGame.this, LettersGame.class);
+                        intent.putExtra(KEY_INDEX, count);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
-
                     }
-
- /*
-                check if choice is correct
-                if correct
-                    count++
-                    play encouraging sound
-                    move to next letter
-                else
-                    play buzzer
-                    try again
-                 */
                 }
             });
-            //count++;
         }
         else{
             Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LettersGame.this, ChooseGames23.class);
             startActivity(intent);
         }
-
-
-
     }
-/*
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("YourTextViewTextIdentifier", yourTextView.getText().toString());
-
-        super.onSaveInstanceState(outState);
-    }
-
-    */
 
     @Override
     public void onSaveInstanceState (Bundle savedInstanceState) {
@@ -226,6 +189,12 @@ public class LettersGame  extends AppCompatActivity {
         // get values from saved state
         count = savedInstanceState.getInt(KEY_INDEX);
         super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    public static List<String> pickNRandom(List<String> lst, int n) {
+        List<String> copy = new ArrayList<String>(lst);
+        Collections.shuffle(copy);
+        return n > copy.size() ? copy.subList(0, copy.size()) : copy.subList(0, n);
     }
 
 }

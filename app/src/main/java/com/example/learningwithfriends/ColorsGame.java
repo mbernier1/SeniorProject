@@ -2,6 +2,7 @@ package com.example.learningwithfriends;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class ColorsGame extends AppCompatActivity {
+
+    private final String KEY_INDEX = "index";
+    GlobalVariables global = new GlobalVariables();
+    private int count = global.GetCount();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,16 @@ public class ColorsGame extends AppCompatActivity {
 
                 if(color_1.toString().equals(correctAnswer)) {
                     Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
+                    count++;
+                    global.SetCount(count);
 
+                    //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                    Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
+                    intent.putExtra(KEY_INDEX, count);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
@@ -72,7 +86,16 @@ public class ColorsGame extends AppCompatActivity {
                 //Toast.makeText(ColorsGame.this, "this is a color 2", Toast.LENGTH_LONG).show();
                 if(color_2.toString().equals(correctAnswer)) {
                     Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
+                    count++;
+                    global.SetCount(count);
 
+                    //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                    Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
+                    intent.putExtra(KEY_INDEX, count);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
@@ -86,7 +109,16 @@ public class ColorsGame extends AppCompatActivity {
                 //Toast.makeText(ColorsGame.this, "this is a color 3", Toast.LENGTH_LONG).show();
                 if(color_3.toString().equals(correctAnswer)) {
                     Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
+                    count++;
+                    global.SetCount(count);
 
+                    //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                    Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
+                    intent.putExtra(KEY_INDEX, count);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
@@ -100,7 +132,16 @@ public class ColorsGame extends AppCompatActivity {
                 //Toast.makeText(ColorsGame.this, "this is a color 4", Toast.LENGTH_LONG).show();
                 if(color_4.toString().equals(correctAnswer)) {
                     Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
+                    count++;
+                    global.SetCount(count);
 
+                    //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                    Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
+                    intent.putExtra(KEY_INDEX, count);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
@@ -115,7 +156,16 @@ public class ColorsGame extends AppCompatActivity {
 
                 if(color_5.toString().equals(correctAnswer)) {
                     Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
+                    count++;
+                    global.SetCount(count);
 
+                    //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                    Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
+                    intent.putExtra(KEY_INDEX, count);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
@@ -130,7 +180,16 @@ public class ColorsGame extends AppCompatActivity {
 
                 if(color_6.toString().equals(correctAnswer)) {
                     Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
+                    count++;
+                    global.SetCount(count);
 
+                    //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+
+
+                    Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
+                    intent.putExtra(KEY_INDEX, count);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();

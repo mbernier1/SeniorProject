@@ -31,8 +31,6 @@ public class NumbersGame extends AppCompatActivity {
         Object[] randomizedNumbersKeys = startGame.RandomKeyGenerator().toArray();
         Object[] randomizedNumbersValues = startGame.RandomValueGenerator().toArray();
 
-        // strings containing first 3 letters form the randomized object list
-        // of keys from the alphabet
         Integer choice_1 = (Integer) randomizedNumbersKeys[0];
         Integer choice_2 = (Integer) randomizedNumbersKeys[1];
         Integer choice_3 = (Integer) randomizedNumbersKeys[2];
