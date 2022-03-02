@@ -1,8 +1,13 @@
 package com.example.learningwithfriends;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -62,10 +67,14 @@ public class ShapesGame extends AppCompatActivity {
         imageView6.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(3)));
         imageView8.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(1)));
 
+
+
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
 
             }
         });
@@ -74,7 +83,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
 
@@ -82,7 +92,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
 
@@ -90,7 +101,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
 
@@ -98,7 +110,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
 
@@ -106,7 +119,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
 
@@ -114,7 +128,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
 
@@ -122,7 +137,8 @@ public class ShapesGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
-
+                Drawable highlight = getResources().getDrawable( R.drawable.highlight);
+                imageView1.setBackground(highlight);
             }
         });
     }
