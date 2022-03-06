@@ -1,5 +1,7 @@
 package com.example.learningwithfriends;
 
+import android.widget.Button;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ public class ShapesGameLogic {
 
     public ShapesGameLogic()
     {
+        //Button buttons = new ArrayList<Button>(button1, button2);
         shapes.put("A", R.mipmap.ic_shape_triangle);
         shapes.put("B", R.mipmap.ic_shape_rectangle);
         shapes.put("C", R.mipmap.ic_shape_square);

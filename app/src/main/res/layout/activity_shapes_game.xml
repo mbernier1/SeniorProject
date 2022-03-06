@@ -14,13 +14,12 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center">
-    <ImageButton
+    <Button
         android:id="@+id/shape_image_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         tools:srcCompat="@tools:sample/avatars" />
-
     <ImageButton
         android:id="@+id/shape_image_2"
         android:layout_width="wrap_content"
