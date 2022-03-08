@@ -22,13 +22,13 @@ import java.util.Random;
 public class ShapesGame extends AppCompatActivity {
 
     Button imageView1;
-    ImageView imageView2;
-    ImageView imageView3;
-    ImageView imageView4;
-    ImageView imageView5;
-    ImageView imageView6;
-    ImageView imageView7;
-    ImageView imageView8;
+    Button imageView2;
+    Button imageView3;
+    Button imageView4;
+    Button imageView5;
+    Button imageView6;
+    Button imageView7;
+    Button imageView8;
 
     String choice_1;
     String choice_2;
@@ -74,18 +74,20 @@ public class ShapesGame extends AppCompatActivity {
 
         //setting random image to imageviews
         //imageView1.setBackgroundResource(ShapesGameLogic.shapes.get(randomShapes.get(0)));
-        //imageView1.setBackground();// (ShapesGameLogic.shapes.get(randomShapes.get(0)));
-        imageView3.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(1)));
-        imageView5.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(2)));
-        imageView7.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(3)));
+        imageView1.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(0))));// (ShapesGameLogic.shapes.get(randomShapes.get(0)));
+        imageView3.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(1))));
+        imageView5.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(2))));
+        imageView7.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(3))));
 
         //adding a little more randomizing to the views
         Collections.shuffle(randomShapes);
 
-        imageView2.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(2)));
-        imageView4.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(0)));
-        imageView6.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(3)));
-        imageView8.setImageResource(ShapesGameLogic.shapes.get(randomShapes.get(1)));
+        imageView2.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(2))));
+        imageView4.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(0))));
+        imageView6.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(3))));
+        imageView8.setForeground(getDrawable(ShapesGameLogic.shapes.get(randomShapes.get(1))));
+
+        imageView1.setText("unclicked");
 
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override

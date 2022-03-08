@@ -19,12 +19,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        tools:srcCompat="@tools:sample/avatars" />
-    <ImageButton
+        android:width="125dp"
+        android:height="125dp"
+        android:foreground="@color/green"/>
+    <Button
         android:id="@+id/shape_image_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:width="125dp"
+        android:height="125dp"
+        android:foreground="@color/green" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,18 +37,22 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:gravity="center">
-    <ImageButton
+    <Button
         android:id="@+id/shape_image_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:width="125dp"
+        android:height="125dp"
+        android:foreground="@color/green" />
 
-    <ImageButton
+    <Button
         android:id="@+id/shape_image_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:width="125dp"
+        android:height="125dp"
+        android:foreground="@color/green"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,35 +60,43 @@
         android:orientation="horizontal"
         android:layout_marginBottom="20dp"
         android:gravity="center">
-    <ImageButton
+    <Button
         android:id="@+id/shape_image_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:width="125dp"
+        android:height="125dp"
+        android:foreground="@color/green" />
 
-    <ImageButton
+    <Button
         android:id="@+id/shape_image_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:width="125dp"
+        android:height="125dp"
+        android:foreground="@color/green"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
-        <ImageButton
+        <Button
             android:id="@+id/shape_image_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="100dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:width="125dp"
+            android:height="125dp"
+            android:foreground="@color/green" />
 
-        <ImageButton
+        <Button
             android:id="@+id/shape_image_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:width="125dp"
+            android:height="125dp"
+            android:foreground="@color/green"/>
     </LinearLayout>
 </LinearLayout>

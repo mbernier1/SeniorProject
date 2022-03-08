@@ -14,13 +14,13 @@ public class ShapesGameLogic {
     public ShapesGameLogic()
     {
         //Button buttons = new ArrayList<Button>(button1, button2);
-        shapes.put("A", R.mipmap.ic_shape_triangle);
-        shapes.put("B", R.mipmap.ic_shape_rectangle);
-        shapes.put("C", R.mipmap.ic_shape_square);
-        shapes.put("D", R.mipmap.ic_shape_circle);
-        shapes.put("E", R.mipmap.ic_shape_star);
-        shapes.put("F", R.mipmap.ic_shape_diamond);
-        shapes.put("G", R.mipmap.ic_shape_heart);
+        shapes.put("A", R.mipmap.ic_shape_triangle_foreground);
+        shapes.put("B", R.mipmap.ic_shape_rectangle_foreground);
+        shapes.put("C", R.mipmap.ic_shape_square_foreground);
+        shapes.put("D", R.mipmap.ic_shape_circle_foreground);
+        shapes.put("E", R.mipmap.ic_shape_star_foreground);
+        shapes.put("F", R.mipmap.ic_shape_diamond_foreground);
+        shapes.put("G", R.mipmap.ic_shape_heart_foreground);
     }
     //randomizes the letters so each time the game is played different letters will used
     public List<String> RandomKeyGenerator()

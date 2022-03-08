@@ -17,7 +17,7 @@ public class ColorsGame extends AppCompatActivity {
 
     private final String KEY_INDEX = "index";
     GlobalVariables global = new GlobalVariables();
-    private int count = global.GetCount();
+    int count = global.GetCount();
 
     ImageView color_1;
     ImageView color_2;

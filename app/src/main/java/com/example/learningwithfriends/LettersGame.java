@@ -2,27 +2,16 @@ package com.example.learningwithfriends;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 
 
@@ -32,7 +21,7 @@ public class LettersGame  extends AppCompatActivity {
 
 
     GlobalVariables global = new GlobalVariables();
-    private int count = global.GetCount();
+    int count = global.GetCount();
     TextView letter_1;
     TextView letter_2;
     TextView letter_3;
