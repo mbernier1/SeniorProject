@@ -72,15 +72,15 @@ public class NumbersGame extends AppCompatActivity {
         number_2.setImageResource(randomNumbers.get(1));
         number_3.setImageResource(randomNumbers.get(2));
 
-        String correctAnswer = randomNumbers.get(0).toString();
-
         number_1.setContentDescription(randomNumbers.get(0).toString());
         number_2.setContentDescription(randomNumbers.get(1).toString());
         number_3.setContentDescription(randomNumbers.get(2).toString());
 
-        image_1.setContentDescription(randomNumbers.get(2).toString());
-        image_2.setContentDescription(randomNumbers.get(0).toString());
-        image_3.setContentDescription(randomNumbers.get(1).toString());
+        Collections.shuffle(randomNumbers);
+
+        image_1.setContentDescription(randomNumbers.get(0).toString());
+        image_2.setContentDescription(randomNumbers.get(1).toString());
+        image_3.setContentDescription(randomNumbers.get(2).toString());
 
 
         number_1.setOnClickListener(new View.OnClickListener() {
@@ -97,16 +97,14 @@ public class NumbersGame extends AppCompatActivity {
 
                     lastSelected = number_1.getContentDescription().toString();
                     Toast.makeText(NumbersGame.this, "last checked is " + lastSelected, Toast.LENGTH_LONG).show();
-
                 }
                 //global.SetNumClicked( numSelected + 1);
                 numSelected++;
 
                 Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
 
-
                 if (numSelected == 2) {
-                    if (number_1.getContentDescription().toString().equals(lastSelected)) {
+                    if (number_1.getContentDescription().toString() == lastSelected) {
 
                         count++;
                         global.SetCount(count);
@@ -120,6 +118,7 @@ public class NumbersGame extends AppCompatActivity {
                         //startActivity(intent);
 
                         numSelected = 0;
+                        lastSelected = "";
                         //play sound
                         //restart game
                     } else {
@@ -151,7 +150,7 @@ public class NumbersGame extends AppCompatActivity {
 
 
                 if (numSelected == 2) {
-                    if (number_2.getContentDescription().toString().equals(lastSelected)) {
+                    if (number_2.getContentDescription().equals(lastSelected)) {
 
 
                         count++;
@@ -167,6 +166,7 @@ public class NumbersGame extends AppCompatActivity {
                         //startActivity(intent);
 
                         numSelected = 0;
+                        lastSelected = "";
 
                         //play sound
                         //restart game
@@ -198,7 +198,7 @@ public class NumbersGame extends AppCompatActivity {
 
 
                 if (numSelected == 2) {
-                    if (number_3.getContentDescription().toString().equals(lastSelected)) {
+                    if (number_3.getContentDescription().equals(lastSelected)) {
 
 
                         count++;
@@ -247,7 +247,7 @@ public class NumbersGame extends AppCompatActivity {
 
 
                 if (numSelected == 2) {
-                    if (image_1.getContentDescription().toString().equals(lastSelected)) {
+                    if (image_1.getContentDescription().equals(lastSelected)) {
 
                         Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
 
@@ -264,6 +264,7 @@ public class NumbersGame extends AppCompatActivity {
                         //startActivity(intent);
 
                         numSelected = 0;
+                        lastSelected = "";
 
                         //play sound
                         //restart game
@@ -296,7 +297,7 @@ public class NumbersGame extends AppCompatActivity {
 
 
                 if (numSelected == 2) {
-                    if (image_2.getContentDescription().toString().equals(lastSelected)) {
+                    if (image_2.getContentDescription().equals(lastSelected)) {
 
 
                         Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
@@ -313,6 +314,7 @@ public class NumbersGame extends AppCompatActivity {
                         //startActivity(intent);
 
                         numSelected = 0;
+                        lastSelected = "";
 
                         //play sound
                         //restart game
@@ -346,7 +348,7 @@ public class NumbersGame extends AppCompatActivity {
 
 
                 if (numSelected == 2) {
-                    if (image_3.getContentDescription().toString().equals(lastSelected)) {
+                    if (image_3.getContentDescription().equals(lastSelected)) {
 
                         Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
 
@@ -363,6 +365,7 @@ public class NumbersGame extends AppCompatActivity {
                         //startActivity(intent);
 
                         numSelected = 0;
+                        lastSelected = "";
 
                         //play sound
                         //restart game

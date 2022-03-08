@@ -62,7 +62,6 @@ public class LettersGame  extends AppCompatActivity {
             String choice_3 = (String) randlet[2];
 
             //setting image from first key of randomized object list
-            imageView.setImageResource(LettersGameLogic.letter_icons.get(choice_1));
 
             Random r = new Random();
             int i = r.nextInt(3);
@@ -71,21 +70,21 @@ public class LettersGame  extends AppCompatActivity {
             choiceList.add(choice_1);
             choiceList.add(choice_2);
             choiceList.add(choice_3);
-
             Collections.shuffle(choiceList);
+
             String correctAnswer = choiceList.get(i);
 
             //List<String> i = 3 > choiceList.size() ? choiceList.subList(0, choiceList.size()) : choiceList.subList(0, 3);
 
             Toast.makeText(this, "random str i = " + correctAnswer
-                    + "  choice 1 from ranlet = " + choice_1
-                    + "  choice 1 from ranlet = " + choice_2
-                    + "  choice 1 from ranlet = " + choice_3
-                    + "  text in first box is = " + letter_1.getText(), Toast.LENGTH_LONG).show();
+                    + "  choice 1 from ranlet = " + choiceList.get(0)
+                    + "  choice 1 from ranlet = " + choiceList.get(1)
+                    + "  choice 1 from ranlet = " + choiceList.get(2), Toast.LENGTH_LONG).show();
 
-            letter_1.setText(choice_1);
-            letter_2.setText(choice_2);
-            letter_3.setText(choice_3);
+            letter_1.setText(choiceList.get(2));
+            letter_2.setText(choiceList.get(0));
+            letter_3.setText(choiceList.get(1));
+            imageView.setImageResource(LettersGameLogic.letter_icons.get(correctAnswer));
 
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
