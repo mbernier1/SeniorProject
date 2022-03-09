@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SeniorProject/app/src/main/res/drawable/highlight.xml" value="0.1535" />
         <entry key="..\:/SeniorProject/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.22791164658634538" />
         <entry key="..\:/SeniorProject/app/src/main/res/layout-w936dp/activity_login.xml" value="0.266015625" />
         <entry key="..\:/SeniorProject/app/src/main/res/layout/activity_body_parts_game.xml" value="0.3546875" />
@@ -22,8 +23,6 @@
         <entry key="..\:/SeniorProject/app/src/main/res/layout/highlight.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/drawable/ic_body_part_foot_background.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/drawable/ic_shape_circle_BW_background.xml" value="0.24427083333333333" />
-        <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/drawable/ic_shape_circle_background.xml" value="0.1085" />
-        <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/drawable/ic_shape_circle_bw_background.xml" value="0.1085" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/layout/activity_colors_game.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/layout/activity_family_members_game.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/balli/Documents/SeniorProject/app/src/main/res/layout/activity_letters_game.xml" value="0.264" />

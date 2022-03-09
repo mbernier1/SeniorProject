@@ -1,12 +1,15 @@
 package com.example.learningwithfriends;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,16 +24,16 @@ public class NumbersGame extends AppCompatActivity {
     GlobalVariables global = new GlobalVariables();
     private final String KEY_INDEX = "index";
     int count = global.GetCount();
-    boolean clicked; // = global.GetClicked();
-    int numSelected; // = global.GetNumCicked();
-    String lastSelected; // = global.GetLastClicked();
+    boolean selected = false;
+    int numSelected = 0;
+    String lastSelected = "";
 
-    ImageView number_1;
-    ImageView number_2;
-    ImageView number_3;
-    ImageView image_1;
-    ImageView image_2;
-    ImageView image_3;
+    ImageButton number_1;
+    ImageButton number_2;
+    ImageButton number_3;
+    ImageButton dots_image_1;
+    ImageButton dots_image_2;
+    ImageButton dots_image_3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +43,12 @@ public class NumbersGame extends AppCompatActivity {
         number_1 = findViewById(R.id.random_number_1);
         number_2 = findViewById(R.id.random_number_2);
         number_3 = findViewById(R.id.random_number_3);
+        dots_image_1 = findViewById(R.id.random_number_dots_1);
+        dots_image_2 = findViewById(R.id.random_number_dots_2);
+        dots_image_3 = findViewById(R.id.random_number_dots_3);
 
-        image_1 = findViewById(R.id.random_number_dots_1);
-        image_2 = findViewById(R.id.random_number_dots_2);
-        image_3 = findViewById(R.id.random_number_dots_3);
-
-        //if(count < 3)
 
         NumbersGameLogic startGame = new NumbersGameLogic();
-
         Object[] randomizedNumbersKeys = startGame.RandomKeyGenerator().toArray();
 
         Integer choice_1 = (Integer) randomizedNumbersKeys[0];
@@ -61,319 +61,48 @@ public class NumbersGame extends AppCompatActivity {
         randomNumbers.add(choice_3);
         Collections.shuffle(randomNumbers);
 
-        //assigning each number to an imageview
-        image_1.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(0)));
-        image_2.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(1)));
-        image_3.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(2)));
+        dots_image_1.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(0)));
+        dots_image_2.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(1)));
+        dots_image_3.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(2)));
 
         Collections.shuffle(randomNumbers);
-
         number_1.setImageResource(randomNumbers.get(0));
         number_2.setImageResource(randomNumbers.get(1));
         number_3.setImageResource(randomNumbers.get(2));
 
-        number_1.setContentDescription(randomNumbers.get(0).toString());
-        number_2.setContentDescription(randomNumbers.get(1).toString());
-        number_3.setContentDescription(randomNumbers.get(2).toString());
+        number_1.setContentDescription("hello");
+        number_2.setContentDescription("world");
 
-        Collections.shuffle(randomNumbers);
-
-        image_1.setContentDescription(randomNumbers.get(0).toString());
-        image_2.setContentDescription(randomNumbers.get(1).toString());
-        image_3.setContentDescription(randomNumbers.get(2).toString());
-
-
-        number_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //global.SetClicked(true);
-                clicked = true;
-                Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                number_1.setBackground(highlight);
-                //global.SetLastClicked(number_1.getContentDescription().toString());
-
-                if(numSelected == 0){
-
+        number_1.setOnClickListener(view -> {
+            number_1.setBackgroundColor(getResources().getColor(R.color.green));
+            if(numSelected == 0)
+            {
+                if(number_1.getContentDescription().toString() == number_2.getContentDescription().toString())
+                {
+                    Toast.makeText(this, "these are the same", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "these are NOT the same", Toast.LENGTH_LONG).show();
                     lastSelected = number_1.getContentDescription().toString();
-                    Toast.makeText(NumbersGame.this, "last checked is " + lastSelected, Toast.LENGTH_LONG).show();
-                }
-                //global.SetNumClicked( numSelected + 1);
-                numSelected++;
-
-                Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
-
-                if (numSelected == 2) {
-                    if (number_1.getContentDescription().toString() == lastSelected) {
-
-                        count++;
-                        global.SetCount(count);
-
-                        Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
-                        //Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
-
-                        numSelected = 0;
-                        lastSelected = "";
-                        //play sound
-                        //restart game
-                    } else {
-                        Toast.makeText(NumbersGame.this, "try again", Toast.LENGTH_LONG).show();
-                    }
                 }
             }
+
+            numSelected++;
+
         });
 
-        number_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
+        number_2.setOnClickListener(view -> {
+            number_2.setBackgroundColor(getResources().getColor(R.color.green));
+            number_2.setContentDescription("hello");
 
-                //global.SetClicked(true);
-                clicked = true;
-                Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                number_2.setBackground(highlight);
-                //global.SetLastClicked(number_1.getContentDescription().toString());
+            if(lastSelected == number_2.getContentDescription().toString()){
+                Toast.makeText(this, "these are the same", Toast.LENGTH_LONG).show();
 
-                if(numSelected == 0){
+            } else {
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
 
-                    lastSelected = number_2.getContentDescription().toString();
-                }
-                //global.SetNumClicked( numSelected + 1);
-                numSelected++;
-
-                Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
-
-
-                if (numSelected == 2) {
-                    if (number_2.getContentDescription().equals(lastSelected)) {
-
-
-                        count++;
-                        global.SetCount(count);
-                        Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
-                        //Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
-
-                        numSelected = 0;
-                        lastSelected = "";
-
-                        //play sound
-                        //restart game
-                    } else {
-                        Toast.makeText(NumbersGame.this, "try again", Toast.LENGTH_LONG).show();
-                    }
-                }
             }
+
         });
 
-        number_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-//global.SetClicked(true);
-                clicked = true;
-                Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                number_3.setBackground(highlight);
-                //global.SetLastClicked(number_1.getContentDescription().toString());
-
-                if (numSelected == 0) {
-
-                    lastSelected = number_3.getContentDescription().toString();
-                }
-                //global.SetNumClicked( numSelected + 1);
-                numSelected++;
-
-                Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
-
-
-                if (numSelected == 2) {
-                    if (number_3.getContentDescription().equals(lastSelected)) {
-
-
-                        count++;
-                        global.SetCount(count);
-                        Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
-                        //Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
-
-                        numSelected = 0;
-                        lastSelected = "";
-                        //play sound
-                        //restart game
-                    } else {
-                        Toast.makeText(NumbersGame.this, "try again", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
-
-        image_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-
-                //global.SetClicked(true);
-                clicked = true;
-                Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                image_1.setBackground(highlight);
-
-                //global.SetLastClicked(number_1.getContentDescription().toString());
-
-                if(numSelected == 0){
-
-                    lastSelected = image_1.getContentDescription().toString();
-                }
-                //global.SetNumClicked( numSelected + 1);
-                numSelected++;
-
-                Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
-
-
-                if (numSelected == 2) {
-                    if (image_1.getContentDescription().equals(lastSelected)) {
-
-                        Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
-
-
-                        count++;
-                        global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
-                        //Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
-
-                        numSelected = 0;
-                        lastSelected = "";
-
-                        //play sound
-                        //restart game
-                    } else {
-                        Toast.makeText(NumbersGame.this, "try again", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
-
-        image_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-
-                //global.SetClicked(true);
-                clicked = true;
-                Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                image_2.setBackground(highlight);
-                //global.SetLastClicked(number_1.getContentDescription().toString());
-
-                if(numSelected == 0){
-
-                    lastSelected = image_2.getContentDescription().toString();
-                }
-                //global.SetNumClicked( numSelected + 1);
-                numSelected++;
-
-                Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
-
-
-                if (numSelected == 2) {
-                    if (image_2.getContentDescription().equals(lastSelected)) {
-
-
-                        Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
-
-                        count++;
-                        global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
-                        //Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
-
-                        numSelected = 0;
-                        lastSelected = "";
-
-                        //play sound
-                        //restart game
-                    } else {
-                        Toast.makeText(NumbersGame.this, "try again", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
-
-        image_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-
-                //global.SetClicked(true);
-                clicked = true;
-                Drawable highlight = getResources().getDrawable(R.drawable.highlight);
-                image_3.setBackground(highlight);
-                //global.SetLastClicked(number_1.getContentDescription().toString());
-
-                if(numSelected == 0){
-
-                    lastSelected = image_3.getContentDescription().toString();
-
-                }
-                //global.SetNumClicked( numSelected + 1);
-                numSelected++;
-
-                Toast.makeText(NumbersGame.this, "the current numSelected is " + numSelected, Toast.LENGTH_SHORT).show();
-
-
-                if (numSelected == 2) {
-                    if (image_3.getContentDescription().equals(lastSelected)) {
-
-                        Toast.makeText(NumbersGame.this, "That's correct!", Toast.LENGTH_LONG).show();
-
-
-                        count++;
-                        global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
-                        //Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                        //intent.putExtra(KEY_INDEX, count);
-                        //startActivity(intent);
-
-                        numSelected = 0;
-                        lastSelected = "";
-
-                        //play sound
-                        //restart game
-                    } else {
-                        Toast.makeText(NumbersGame.this, "try again", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
     }
 }

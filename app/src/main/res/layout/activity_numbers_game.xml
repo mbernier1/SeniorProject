@@ -13,51 +13,58 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="150dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/random_number_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/random_number_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/random_number_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="end"
         android:orientation="vertical">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/random_number_dots_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/random_number_dots_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/random_number_dots_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginRight="20dp" />
     </LinearLayout>
 
 </LinearLayout>
