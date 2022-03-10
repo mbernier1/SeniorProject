@@ -74,50 +74,65 @@ public class NumbersGame extends AppCompatActivity {
         number_2.setContentDescription("unclicked");
 
         number_1.setOnClickListener(view -> {
-            number_1.setBackgroundColor(getResources().getColor(R.color.green));
 
             if(number_1.getContentDescription() != "clicked" && !selected) {
+                number_1.setBackgroundColor(getResources().getColor(R.color.green));
                 number_1.setContentDescription("clicked");
                 //selected = true;
 
                 if (numSelected == 0) {
-                    if (number_1.getContentDescription().toString() == number_2.getContentDescription().toString()) {
-                        Toast.makeText(this, "these are the same", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "these are NOT the same", Toast.LENGTH_LONG).show();
-                        lastSelected = number_1.getContentDescription().toString();
-                    }
+                    lastSelected = number_1.getContentDescription().toString();
                 }
                 numSelected++;
-            } else {
+            } else {//if(number_1.getContentDescription() == "clicked") {
                 numSelected--;
-                selected = false;
-                number_2.setBackgroundColor(getResources().getColor(R.color.black));
+                //selected = false;
+                number_1.setBackgroundColor(getResources().getColor(R.color.black));
+            }
+
+            if(numSelected == 2){
+                selected = true;
+                if(number_1.getContentDescription() == lastSelected){
+                    number_1.setClickable(false);
+                    selected = false;
+                    numSelected = 0;
+                    lastSelected = "";
+                    number_1.setContentDescription("unclicked");
+
+                }
             }
 
         });
 
         number_2.setOnClickListener(view -> {
-            number_2.setBackgroundColor(getResources().getColor(R.color.green));
             //number_2.setContentDescription("clicked");
 
             if(number_2.getContentDescription() != "clicked" && !selected) {
+                number_2.setBackgroundColor(getResources().getColor(R.color.green));
                 number_2.setContentDescription("clicked");
                 //selected = true;
 
                 if (numSelected == 0) {
-                    if (number_1.getContentDescription().toString() == number_2.getContentDescription().toString()) {
-                        Toast.makeText(this, "these are the same", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "these are NOT the same", Toast.LENGTH_LONG).show();
-                        lastSelected = number_2.getContentDescription().toString();
-                    }
+                    lastSelected = number_2.getContentDescription().toString();
                 }
+
                 numSelected++;
-            } else {
+            } else if(number_2.getContentDescription() == "clicked") {
                 numSelected--;
-                selected = false;
+                //selected = false;
                 number_2.setBackgroundColor(getResources().getColor(R.color.black));
+            }
+
+            if(numSelected == 2){
+                selected = true;
+                if(number_2.getContentDescription() == lastSelected){
+                    number_2.setClickable(false);
+                    selected = false;
+                    numSelected = 0;
+                    lastSelected = "";
+                    number_2.setContentDescription("unclicked");
+
+                }
             }
 
         });
