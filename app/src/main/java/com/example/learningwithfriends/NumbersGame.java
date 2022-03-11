@@ -13,7 +13,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.learningwithfriends.R.mipmap.*;
+import com.example.learningwithfriends.R.drawable.*;
 
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,47 +32,113 @@ public class NumbersGame extends AppCompatActivity {
     int numSelected = 0;
     String lastSelected = "";
 
-    ImageButton number_1;
-    ImageButton number_2;
-    ImageButton number_3;
-    ImageButton dots_image_1;
-    ImageButton dots_image_2;
-    ImageButton dots_image_3;
+    Button number_1;
+    Button number_2;
+    Button number_3;
+    Button dots_image_1;
+    Button dots_image_2;
+    Button dots_image_3;
+
+    /*private static final int[] BUTTON_IDS = {
+            R.id.random_number_1,
+            R.id.random_number_2,
+            R.id.random_number_3,
+            R.id.random_number_dots_1,
+            R.id.random_number_dots_2,
+            R.id.random_number_dots_3
+    };*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers_game);
 
-        number_1 = findViewById(R.id.random_number_1);
+        /*number_1 = findViewById(R.id.random_number_1);
         number_2 = findViewById(R.id.random_number_2);
         number_3 = findViewById(R.id.random_number_3);
         dots_image_1 = findViewById(R.id.random_number_dots_1);
         dots_image_2 = findViewById(R.id.random_number_dots_2);
         dots_image_3 = findViewById(R.id.random_number_dots_3);
+*/
+        //array of buttons to reduce code later
+        Button buttons[] = new Button[3];
+        buttons[0] = findViewById(R.id.random_number_1);
+        buttons[1] = findViewById(R.id.random_number_2);
+        buttons[2] = findViewById(R.id.random_number_3);
 
+        Button buttons2[] = new Button[3];
+        buttons2[0] = findViewById(R.id.random_number_dots_1);
+        buttons2[1] = findViewById(R.id.random_number_dots_2);
+        buttons2[2] = findViewById(R.id.random_number_dots_3);
 
+        //initializing a game to play
         NumbersGameLogic startGame = new NumbersGameLogic();
-        Object[] randomizedNumbersKeys = startGame.RandomKeyGenerator().toArray();
 
+        //randomizing the keys and then pulling the first three out to use for the game
+        Object[] randomizedNumbersKeys = startGame.RandomKeyGenerator().toArray();
         Integer choice_1 = (Integer) randomizedNumbersKeys[0];
         Integer choice_2 = (Integer) randomizedNumbersKeys[1];
         Integer choice_3 = (Integer) randomizedNumbersKeys[2];
 
+        //making a list of the chosen keys so I can scramble the at anytime
+        //for display purposes
         List<Integer> randomNumbers = new ArrayList<Integer>();
         randomNumbers.add(choice_1);
         randomNumbers.add(choice_2);
         randomNumbers.add(choice_3);
         Collections.shuffle(randomNumbers);
 
-        dots_image_1.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(0)));
-        dots_image_2.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(1)));
-        dots_image_3.setImageResource(NumbersGameLogic.numbers.get(randomNumbers.get(2)));
+        for(int i = 0, j = 2; i < 3; i++, j--){
+            buttons[i].setBackgroundResource(randomNumbers.get(i));
+            buttons2[i].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(j)));
 
+            buttons[i].setText("cardback");
+            buttons2[i].setText("cardback");
+
+            buttons[i].setTextSize(0.0F);
+            buttons2[i].setTextSize(0.0F);
+
+            int finalI = i;
+            buttons[i].setOnClickListener(view -> {
+                if(buttons[finalI].getText() == "cardback"){
+
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+        // setting background of buttons on the right
+        dots_image_1.setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(0)));
+        dots_image_2.setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(1)));
+        dots_image_3.setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(2)));
+
+        // setting background of buttons on the right
+        //shuffling the images so that there is less chance of the pairs
+        //being right across from the match
         Collections.shuffle(randomNumbers);
-        number_1.setImageResource(randomNumbers.get(0));
-        number_2.setImageResource(randomNumbers.get(1));
-        number_3.setImageResource(randomNumbers.get(2));
+        number_1.setBackgroundResource(randomNumbers.get(0));
+        number_2.setBackgroundResource(randomNumbers.get(1));
+        number_3.setBackgroundResource(randomNumbers.get(2));
 
         number_1.setContentDescription("unclicked");
         number_2.setContentDescription("unclicked");
@@ -135,7 +205,7 @@ public class NumbersGame extends AppCompatActivity {
                 }
             }
 
-        });
+        });*/
 
     }
 }
