@@ -3,8 +3,12 @@ package com.example.learningwithfriends;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +30,11 @@ public class ColorsGame extends AppCompatActivity {
     ImageView color_5;
     ImageView color_6;
 
+    Button playSound;
+
+    private SoundPool colorSoundPool;
+    private int blue, green,orange, pink, purple, yellow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,6 +49,24 @@ public class ColorsGame extends AppCompatActivity {
         color_4 = findViewById(R.id.color4);
         color_5 = findViewById(R.id.color5);
         color_6 = findViewById(R.id.color6);
+
+        playSound = findViewById(R.id.start_sound);
+
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        colorSoundPool = new SoundPool.Builder()
+                .setMaxStreams(6)
+                .setAudioAttributes(audioAttributes)
+                .build();
+        blue = colorSoundPool.load(this, R.raw.blue, 1);
+        green = colorSoundPool.load(this, R.raw.green, 1);
+        orange = colorSoundPool.load(this, R.raw.orange, 1);
+        pink = colorSoundPool.load(this, R.raw.pink, 1);
+        purple = colorSoundPool.load(this, R.raw.purple, 1);
+        yellow = colorSoundPool.load(this, R.raw.yellow, 1);
 
         if (count < 3) {
             ColorsGameLogic startGame = new ColorsGameLogic();
@@ -83,36 +110,33 @@ public class ColorsGame extends AppCompatActivity {
             Collections.shuffle(choiceList);
             String correctAnswer = choiceList.get(0);
 
-            /*Toast.makeText(ColorsGame.this, "here is the color btn description "
-                    + color_1.getContentDescription()
-                    + color_2.getContentDescription()
-                    + color_3.getContentDescription()
-                    + color_4.getContentDescription()
-                    + color_5.getContentDescription()
-                    + color_6.getContentDescription(), Toast.LENGTH_LONG).show();
-*/
+            playSound.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PlaySound(correctAnswer);
+                }
+            });
+
             Toast.makeText(ColorsGame.this, "here is the answer "
                     + correctAnswer, Toast.LENGTH_LONG).show();
 
             color_1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
 
                     if (color_1.getContentDescription() == correctAnswer) {
                         Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
                         count++;
                         global.SetCount(count);
 
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
-
                         Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
+
                     } else {
                         Toast.makeText(ColorsGame.this, "try again", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -120,21 +144,21 @@ public class ColorsGame extends AppCompatActivity {
             color_2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(ColorsGame.this, "this is a color 2", Toast.LENGTH_LONG).show();
                     if (color_2.getContentDescription() == correctAnswer) {
                         Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
                         count++;
                         global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.congrats);
+                        mediaPlayer.start();
 
                         Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
+
                     } else {
                         Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -142,21 +166,21 @@ public class ColorsGame extends AppCompatActivity {
             color_3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(ColorsGame.this, "this is a color 3", Toast.LENGTH_LONG).show();
                     if (color_3.getContentDescription() == correctAnswer) {
                         Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
                         count++;
                         global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.congrats);
+                        mediaPlayer.start();
 
                         Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
+
                     } else {
                         Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -164,21 +188,21 @@ public class ColorsGame extends AppCompatActivity {
             color_4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(ColorsGame.this, "this is a color 4", Toast.LENGTH_LONG).show();
                     if (color_4.getContentDescription() == correctAnswer) {
                         Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
                         count++;
                         global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.congrats);
+                        mediaPlayer.start();
 
                         Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
+
                     } else {
                         Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -186,22 +210,21 @@ public class ColorsGame extends AppCompatActivity {
             color_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Toast.makeText(ColorsGame.this, "this is a color 5", Toast.LENGTH_LONG).show();
-
                     if (color_5.getContentDescription() == correctAnswer) {
                         Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
                         count++;
                         global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.congrats);
+                        mediaPlayer.start();
 
                         Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
+
                     } else {
                         Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -209,28 +232,50 @@ public class ColorsGame extends AppCompatActivity {
             color_6.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Toast.makeText(ColorsGame.this, "this is a color 5", Toast.LENGTH_LONG).show();
-
                     if (color_6.getContentDescription() == correctAnswer) {
                         Toast.makeText(ColorsGame.this, "That is Correct", Toast.LENGTH_LONG).show();
                         count++;
                         global.SetCount(count);
-
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.congrats);
+                        mediaPlayer.start();
 
                         Intent intent = new Intent(ColorsGame.this, ColorsGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
+
                     } else {
                         Toast.makeText(ColorsGame.this, "this is a color 1", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(ColorsGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
-        }else{
+        } else {
             Intent intent = new Intent(ColorsGame.this, ChooseGames23.class);
             startActivity(intent);
+        }
+    }
+
+    public void PlaySound(String sound){
+        switch(sound){
+            case "blue":
+                colorSoundPool.play(blue, 1, 1, 0, 0, 1);
+                break;
+            case "green":
+                colorSoundPool.play(green, 1, 1, 0, 0, 1);
+                break;
+            case "orange":
+                colorSoundPool.play(orange, 1, 1, 0, 0, 1);
+                break;
+            case "pink":
+                colorSoundPool.play(pink, 1, 1, 0, 0, 1);
+                break;
+            case "purple":
+                colorSoundPool.play(purple, 1, 1, 0, 0, 1);
+                break;
+            case "yellow":
+                colorSoundPool.play(yellow, 1, 1, 0, 0, 1);
+                break;
         }
     }
 }

@@ -6,6 +6,8 @@ import androidx.core.content.res.ResourcesCompat;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +32,8 @@ public class NumbersGame extends AppCompatActivity {
     int count = global.GetCount();
     boolean selected = false;
     int numSelected = 0;
-    String lastSelected = "";
+    int lastSelected = -1;
+    int matches = 0;
 
     Button number_1;
     Button number_2;
@@ -39,14 +42,8 @@ public class NumbersGame extends AppCompatActivity {
     Button dots_image_2;
     Button dots_image_3;
 
-    /*private static final int[] BUTTON_IDS = {
-            R.id.random_number_1,
-            R.id.random_number_2,
-            R.id.random_number_3,
-            R.id.random_number_dots_1,
-            R.id.random_number_dots_2,
-            R.id.random_number_dots_3
-    };*/
+    private SoundPool completedTaskPool;
+    private int congrats, good_job;
 
 
     @Override
@@ -61,13 +58,25 @@ public class NumbersGame extends AppCompatActivity {
         dots_image_2 = findViewById(R.id.random_number_dots_2);
         dots_image_3 = findViewById(R.id.random_number_dots_3);
 */
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        completedTaskPool = new SoundPool.Builder()
+                .setMaxStreams(2)
+                .setAudioAttributes(audioAttributes)
+                .build();
+        congrats = completedTaskPool.load(this, R.raw.congrats, 1);
+        good_job = completedTaskPool.load(this, R.raw.good_job, 1);
+
         //array of buttons to reduce code later
-        Button buttons[] = new Button[3];
+        Button[] buttons = new Button[3];
         buttons[0] = findViewById(R.id.random_number_1);
         buttons[1] = findViewById(R.id.random_number_2);
         buttons[2] = findViewById(R.id.random_number_3);
 
-        Button buttons2[] = new Button[3];
+        Button[] buttons2 = new Button[3];
         buttons2[0] = findViewById(R.id.random_number_dots_1);
         buttons2[1] = findViewById(R.id.random_number_dots_2);
         buttons2[2] = findViewById(R.id.random_number_dots_3);
@@ -89,20 +98,116 @@ public class NumbersGame extends AppCompatActivity {
         randomNumbers.add(choice_3);
         Collections.shuffle(randomNumbers);
 
+        Toast.makeText(this, randomizedNumbersKeys[0].toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, randomNumbers.get(0).toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, randomNumbers.get(1), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, randomNumbers.get(2).toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, randomizedNumbersKeys[0].toString(), Toast.LENGTH_LONG).show();
+
+        int var = NumbersGameLogic.numbers.get(randomNumbers.get(2));
+        int var2 = NumbersGameLogic.numbers.get(2);
+        Toast.makeText(this, var + var2, Toast.LENGTH_SHORT).show();
+
         for(int i = 0, j = 2; i < 3; i++, j--){
-            buttons[i].setBackgroundResource(randomNumbers.get(i));
+            //buttons[i].setBackgroundResource(randomNumbers.get(i));
             buttons2[i].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(j)));
+
+            //int var = NumbersGameLogic.numbers.get(randomNumbers.get(2));
+            //int var2 = NumbersGameLogic.numbers.get(2);
+            //Toast.makeText(this, var + var2, Toast.LENGTH_SHORT).show();
 
             buttons[i].setText("cardback");
             buttons2[i].setText("cardback");
 
-            buttons[i].setTextSize(0.0F);
-            buttons2[i].setTextSize(0.0F);
+
+            //buttons[i].setTextSize(0.0F);
+            //buttons2[i].setTextSize(0.0F);
 
             int finalI = i;
+            int finalJ = j;
             buttons[i].setOnClickListener(view -> {
-                if(buttons[finalI].getText() == "cardback"){
+                if((buttons[finalI].getText() == "cardback" && buttons2[finalI].getText() == "cardback") && !selected){
 
+                    buttons[finalI].setText("cardfront");
+                    //buttons2[finalI].setText("cardfront");
+
+                    buttons[finalI].setBackgroundResource(randomNumbers.get(finalI));
+                    //buttons2[finalI].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)));
+
+                    if(numSelected == 0){
+                        lastSelected = finalI;
+                    }
+                    numSelected++;
+
+                } else if(buttons[finalI].getText() != "cardback" && buttons2[finalI].getText() != "cardback") {
+
+                    buttons[finalI].setBackgroundResource(R.mipmap.ic_ball);
+                    buttons[finalI].setText("cardback");
+                    buttons2[finalI].setText("cardback");
+                    numSelected--;
+                }
+
+
+                if(numSelected == 2){
+                    selected = true;
+                    if(buttons2[NumbersGameLogic.numbers.get(randomNumbers.get(finalI))] == buttons[NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
+                        buttons2[finalI].setClickable(false);
+                        buttons[lastSelected].setClickable(false);
+                        selected = false;
+                        numSelected = 0;
+                        completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
+
+                        //lastSelected = -1;
+                        matches++;
+                        if(matches == 3)
+                        {
+                            Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
+                            //intent.putExtra(KEY_INDEX, count);
+                            startActivity(intent);
+                        }
+                    }
+                } else if (numSelected == 0){
+                    selected = false;
+                }
+            });
+
+            buttons2[i].setOnClickListener(view -> {
+                 if (buttons2[finalI].getText() == "cardback" && !selected) {
+
+                    buttons2[finalI].setText("cardfront");
+                    buttons2[finalI].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)));
+                    numSelected++;
+
+                 } else if(buttons2[finalI].getText() != "cardback"){
+
+                    buttons2[finalI].setBackgroundResource(R.mipmap.ic_ball);
+                    buttons2[finalI].setText("cardback");
+                    numSelected--;
+
+                }
+
+                if(numSelected == 2){
+                    selected = true;
+                    if(buttons2[finalI].getText()  == buttons[(Integer) NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
+                        buttons2[finalI].setClickable(false);
+                        buttons[lastSelected].setClickable(false);
+                        selected = false;
+                        numSelected = 0;
+                        completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
+
+                        // lastSelected = -1;
+                        matches++;
+                        if(matches == 3)
+                        {
+                            completedTaskPool.play(congrats, 1, 1, 0, 0, 1);
+
+                            Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
+                            //intent.putExtra(KEY_INDEX, count);
+                            startActivity(intent);
+                        }
+                    }
+                } else if (numSelected == 0){
+                    selected = false;
                 }
             });
         }

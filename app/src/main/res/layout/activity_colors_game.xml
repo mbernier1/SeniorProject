@@ -36,6 +36,15 @@
         android:layout_column="2"
         android:src="@mipmap/ic_3_dots"
         android:clickable="true"/>
+    <Button
+        android:id="@+id/start_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_row="6"
+        android:layout_column="4"
+        android:onClick="PlaySound"
+        android:text="Play Sound"/>
 
     <ImageView
         android:id="@+id/color4"

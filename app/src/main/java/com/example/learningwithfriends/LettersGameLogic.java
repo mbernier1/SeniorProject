@@ -40,6 +40,7 @@ public class LettersGameLogic {
         letter_icons.put("Y", R.mipmap.ic_yo_yo);
         letter_icons.put("Z", R.mipmap.ic_zebra);
     }
+
     //randomizes the letters so each time the game is played different letters will used
     public List<String> RandomKeyGenerator()
     {
@@ -48,21 +49,4 @@ public class LettersGameLogic {
 
         return randomLetters;
     }
-
-    public Set<String> GetKeys() {
-        return letter_icons.keySet();
-    }
-    /*public Collection<String> GetValues() {
-        return letter_icons.values();
-    }
-*/
-    public static Integer GetSingleKey(String key) {
-
-        return letter_icons.get(key);
-    }
-
-    public int sizeOfAlphabet() {return letter_icons.size(); }
-
-    //  display icon
-    //  announce letter
 }

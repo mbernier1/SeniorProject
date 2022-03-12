@@ -3,6 +3,9 @@ package com.example.learningwithfriends;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +30,9 @@ public class LettersGame  extends AppCompatActivity {
     TextView letter_3;
     ImageView imageView;
 
+    private SoundPool completedTaskPool;
+    private int congrats, good_job;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,8 +49,17 @@ public class LettersGame  extends AppCompatActivity {
         letter_3 = findViewById(R.id.random_letter_3);
         imageView = findViewById(R.id.image_of_random_letter);
 
-        //int currentIndex =   savedInstanceState.getInt(KEY_INDEX) ? 0 : count;
-        //count = currentIndex;
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        completedTaskPool = new SoundPool.Builder()
+                .setMaxStreams(2)
+                .setAudioAttributes(audioAttributes)
+                .build();
+        congrats = completedTaskPool.load(this, R.raw.congrats, 1);
+        good_job = completedTaskPool.load(this, R.raw.good_job, 1);
 
 
         if (count < 3) {
@@ -54,14 +69,11 @@ public class LettersGame  extends AppCompatActivity {
             //Object list of letters in random order
             Object[] randlet = startGame.RandomKeyGenerator().toArray();
 
-
             // strings containing first 3 letters from the randomized object list
             // of keys from the alphabet
             String choice_1 = (String) randlet[0];
             String choice_2 = (String) randlet[1];
             String choice_3 = (String) randlet[2];
-
-            //setting image from first key of randomized object list
 
             Random r = new Random();
             int i = r.nextInt(3);
@@ -74,13 +86,6 @@ public class LettersGame  extends AppCompatActivity {
 
             String correctAnswer = choiceList.get(i);
 
-            //List<String> i = 3 > choiceList.size() ? choiceList.subList(0, choiceList.size()) : choiceList.subList(0, 3);
-
-            Toast.makeText(this, "random str i = " + correctAnswer
-                    + "  choice 1 from ranlet = " + choiceList.get(0)
-                    + "  choice 1 from ranlet = " + choiceList.get(1)
-                    + "  choice 1 from ranlet = " + choiceList.get(2), Toast.LENGTH_LONG).show();
-
             letter_1.setText(choiceList.get(2));
             letter_2.setText(choiceList.get(0));
             letter_3.setText(choiceList.get(1));
@@ -89,26 +94,21 @@ public class LettersGame  extends AppCompatActivity {
             letter_1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
-
                     if (letter_1.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
 
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
 
                         Intent intent = new Intent(LettersGame.this, LettersGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
 
-
-                        //play sound
-                        //restart game
                     } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(LettersGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -116,21 +116,20 @@ public class LettersGame  extends AppCompatActivity {
             letter_2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
                     if (letter_2.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
 
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
-
+                        completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
 
                         Intent intent = new Intent(LettersGame.this, LettersGame.class);
                         intent.putExtra(KEY_INDEX, count);
                         startActivity(intent);
                     } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(LettersGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
@@ -138,14 +137,12 @@ public class LettersGame  extends AppCompatActivity {
             letter_3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(LettersGame.this, "This is a test", Toast.LENGTH_LONG).show();
                     if (letter_3.getText() == correctAnswer) {
                         Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
 
-                        //Toast.makeText(LettersGame.this, "This is the current count " + count, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(LettersGame.this, "This is the current global count " + global.GetCount(), Toast.LENGTH_LONG).show();
+                        completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
 
 
                         Intent intent = new Intent(LettersGame.this, LettersGame.class);
@@ -153,12 +150,15 @@ public class LettersGame  extends AppCompatActivity {
                         startActivity(intent);
                     } else {
                         Toast.makeText(LettersGame.this, "try again", Toast.LENGTH_LONG).show();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(LettersGame.this, R.raw.oops_try_again);
+                        mediaPlayer.start();
                     }
                 }
             });
         }
         else{
-            Toast.makeText(this, "You have completed the game", Toast.LENGTH_SHORT).show();
+            completedTaskPool.play(congrats, 1, 1, 0, 0, 1);
+
             Intent intent = new Intent(LettersGame.this, ChooseGames23.class);
             startActivity(intent);
         }
