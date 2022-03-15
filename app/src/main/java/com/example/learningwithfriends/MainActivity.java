@@ -50,10 +50,18 @@ public class MainActivity extends AppCompatActivity {
         numbers.put(R.mipmap.ic_number_8_foreground, R.mipmap.ic_8_dots_foreground);
         numbers.put(R.mipmap.ic_number_9_foreground, R.mipmap.ic_9_dots_foreground);
 
+        int keyTest = 0;
         // 1. for-each with Entry
         for (Map.Entry<Integer, Integer> entry : numbers.entrySet()) {
             System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            keyTest = entry.getKey();
+
+
+            System.out.println("Key test = " + keyTest);
         }
+
+
+        System.out.println("Key test = " + keyTest);
 
 
 // 2. for-each with key or value each (faster)

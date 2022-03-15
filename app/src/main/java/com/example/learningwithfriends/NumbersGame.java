@@ -71,15 +71,15 @@ public class NumbersGame extends AppCompatActivity {
         good_job = completedTaskPool.load(this, R.raw.good_job, 1);
 
         //array of buttons to reduce code later
-        Button[] buttons = new Button[3];
-        buttons[0] = findViewById(R.id.random_number_1);
-        buttons[1] = findViewById(R.id.random_number_2);
-        buttons[2] = findViewById(R.id.random_number_3);
+        Button[] numberButtons = new Button[3];
+        numberButtons[0] = findViewById(R.id.random_number_1);
+        numberButtons[1] = findViewById(R.id.random_number_2);
+        numberButtons[2] = findViewById(R.id.random_number_3);
 
-        Button[] buttons2 = new Button[3];
-        buttons2[0] = findViewById(R.id.random_number_dots_1);
-        buttons2[1] = findViewById(R.id.random_number_dots_2);
-        buttons2[2] = findViewById(R.id.random_number_dots_3);
+        Button[] dotButtons = new Button[3];
+        dotButtons[0] = findViewById(R.id.random_number_dots_1);
+        dotButtons[1] = findViewById(R.id.random_number_dots_2);
+        dotButtons[2] = findViewById(R.id.random_number_dots_3);
 
         //initializing a game to play
         NumbersGameLogic startGame = new NumbersGameLogic();
@@ -98,114 +98,155 @@ public class NumbersGame extends AppCompatActivity {
         randomNumbers.add(choice_3);
         Collections.shuffle(randomNumbers);
 
-        Toast.makeText(this, randomizedNumbersKeys[0].toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, randomNumbers.get(0).toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, randomNumbers.get(1), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, randomNumbers.get(2).toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, randomizedNumbersKeys[0].toString(), Toast.LENGTH_LONG).show();
-
-        int var = NumbersGameLogic.numbers.get(randomNumbers.get(2));
-        int var2 = NumbersGameLogic.numbers.get(2);
-        Toast.makeText(this, var + var2, Toast.LENGTH_SHORT).show();
+        //int var = NumbersGameLogic.numbers.get(randomNumbers.get(2));
+        //int var2 = NumbersGameLogic.numbers.get(2);
+        //Toast.makeText(this, var + var2, Toast.LENGTH_SHORT).show();
 
         for(int i = 0, j = 2; i < 3; i++, j--){
-            //buttons[i].setBackgroundResource(randomNumbers.get(i));
-            buttons2[i].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(j)));
+            numberButtons[i].setBackgroundResource(randomNumbers.get(i));
+            dotButtons[i].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(j)));
 
-            //int var = NumbersGameLogic.numbers.get(randomNumbers.get(2));
-            //int var2 = NumbersGameLogic.numbers.get(2);
-            //Toast.makeText(this, var + var2, Toast.LENGTH_SHORT).show();
+            //randomNumbers.get(i) = gets they key
+            //NumbersGameLogic.numbers.get(randomNumbers.get(j)) = gets the value of key(j)
+            /*int keyTest1 = 0;
 
-            buttons[i].setText("cardback");
-            buttons2[i].setText("cardback");
+            for (Map.Entry<Integer, Integer> entry : NumbersGameLogic.numbers.entrySet()) {
+                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                keyTest1 = entry.getValue();
 
-
+                if(NumbersGameLogic.numbers.get(randomNumbers.get(j)) == keyTest1)
+                {
+                    dotButtons[i].setText(entry.getKey().toString());
+                }
+            }*/
+            numberButtons[i].setText("cardback");
+            dotButtons[i].setText("cardback");
             //buttons[i].setTextSize(0.0F);
             //buttons2[i].setTextSize(0.0F);
-
             int finalI = i;
             int finalJ = j;
-            buttons[i].setOnClickListener(view -> {
-                if((buttons[finalI].getText() == "cardback" && buttons2[finalI].getText() == "cardback") && !selected){
+            numberButtons[i].setOnClickListener(view -> {
+                if(numberButtons[finalI].getText() == "cardback" && !selected){
 
-                    buttons[finalI].setText("cardfront");
-                    //buttons2[finalI].setText("cardfront");
-
-                    buttons[finalI].setBackgroundResource(randomNumbers.get(finalI));
-                    //buttons2[finalI].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)));
+                    numberButtons[finalI].setText(randomNumbers.get(finalI).toString());
 
                     if(numSelected == 0){
                         lastSelected = finalI;
                     }
                     numSelected++;
 
-                } else if(buttons[finalI].getText() != "cardback" && buttons2[finalI].getText() != "cardback") {
+                } else if(numberButtons[finalI].getText() != "cardback" ) {
 
-                    buttons[finalI].setBackgroundResource(R.mipmap.ic_ball);
-                    buttons[finalI].setText("cardback");
-                    buttons2[finalI].setText("cardback");
+                    numberButtons[finalI].setText("cardback");
                     numSelected--;
                 }
-
-
+/*
                 if(numSelected == 2){
                     selected = true;
-                    if(buttons2[NumbersGameLogic.numbers.get(randomNumbers.get(finalI))] == buttons[NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
-                        buttons2[finalI].setClickable(false);
-                        buttons[lastSelected].setClickable(false);
-                        selected = false;
-                        numSelected = 0;
-                        completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
+                    int keyTest = 0;
 
-                        //lastSelected = -1;
-                        matches++;
-                        if(matches == 3)
-                        {
-                            Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
-                            //intent.putExtra(KEY_INDEX, count);
-                            startActivity(intent);
+                    /*for (Map.Entry<Integer, Integer> entry : NumbersGameLogic.numbers.entrySet()) {
+                        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                        keyTest = entry.getValue();
+
+                        if (NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)) == keyTest) {
+                            dotButtons[finalI].setText(entry.getKey().toString());
                         }
                     }
-                } else if (numSelected == 0){
-                    selected = false;
-                }
-            });
+                    System.out.println("this is the number buttons");
+                    System.out.println("last selected " + lastSelected + " " + numberButtons[lastSelected].getText() +
+                            " current dot button text " + dotButtons[finalI].getText());
 
-            buttons2[i].setOnClickListener(view -> {
-                 if (buttons2[finalI].getText() == "cardback" && !selected) {
 
-                    buttons2[finalI].setText("cardfront");
-                    buttons2[finalI].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)));
-                    numSelected++;
+                    if(numberButtons[lastSelected].getText() == dotButtons[finalI].getText() ) {
 
-                 } else if(buttons2[finalI].getText() != "cardback"){
 
-                    buttons2[finalI].setBackgroundResource(R.mipmap.ic_ball);
-                    buttons2[finalI].setText("cardback");
-                    numSelected--;
-
-                }
-
-                if(numSelected == 2){
-                    selected = true;
-                    if(buttons2[finalI].getText()  == buttons[(Integer) NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
-                        buttons2[finalI].setClickable(false);
-                        buttons[lastSelected].setClickable(false);
+                        //if (dotButtons[finalI].getText().toString().equals(randomNumbers.get(lastSelected).toString())) {
+                        dotButtons[finalI].setClickable(false);
+                        numberButtons[lastSelected].setClickable(false);
                         selected = false;
                         numSelected = 0;
                         completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
-
-                        // lastSelected = -1;
                         matches++;
-                        if(matches == 3)
-                        {
+                        if (matches == 3) {
                             completedTaskPool.play(congrats, 1, 1, 0, 0, 1);
 
                             Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
                             //intent.putExtra(KEY_INDEX, count);
                             startActivity(intent);
                         }
+                        //}
                     }
+
+                    //if(buttons2[finalI].getText()  == buttons[(Integer) NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
+                } else if (numSelected == 0){
+                    selected = false;
+                }*/
+            });
+
+            dotButtons[i].setOnClickListener(view -> {
+                 if (dotButtons[finalI].getText() == "cardback" && !selected) {
+
+                     int dotString;
+
+                     for (Map.Entry<Integer, Integer> entry : NumbersGameLogic.numbers.entrySet()) {
+                         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                         dotString = entry.getValue();
+
+                         if(NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)) == dotString)
+                         {
+                             dotButtons[finalI].setText(entry.getKey().toString());
+                         }
+
+                     }
+                    //buttons2[finalI].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)));
+                    numSelected++;
+
+                 } else if(dotButtons[finalI].getText() != "cardback"){
+
+                     dotButtons[finalI].setText("cardback");
+                     numSelected--;
+                }
+
+                if(numSelected == 2){
+                    selected = true;
+                    int keyTest = 0;
+
+                    /*for (Map.Entry<Integer, Integer> entry : NumbersGameLogic.numbers.entrySet()) {
+                        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                        keyTest = entry.getValue();
+
+                        if (NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)) == keyTest) {
+                            dotButtons[finalI].setText(entry.getKey().toString());
+                        }
+                    }*/
+                        System.out.println("last selected " + lastSelected + " " + numberButtons[lastSelected].getText() +
+                                " current dot button text " + dotButtons[finalI].getText());
+
+
+                        if(numberButtons[lastSelected].getText() == dotButtons[finalI].getText()) {
+
+
+                            //if (dotButtons[finalI].getText().toString().equals(randomNumbers.get(lastSelected).toString())) {
+                                dotButtons[finalI].setClickable(false);
+                                numberButtons[lastSelected].setClickable(false);
+                                selected = false;
+                                numSelected = 0;
+                                completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
+                                matches++;
+                            System.out.println("matches = " + matches);
+
+                            if (matches == 3) {
+                                    completedTaskPool.play(congrats, 1, 1, 0, 0, 1);
+
+                                    Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
+                                    //intent.putExtra(KEY_INDEX, count);
+                                    startActivity(intent);
+                            }
+                            //}
+                        }
+
+                    //if(buttons2[finalI].getText()  == buttons[(Integer) NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
                 } else if (numSelected == 0){
                     selected = false;
                 }
