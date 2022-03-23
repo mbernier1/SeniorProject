@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,9 +20,9 @@ import java.util.Random;
 
 
 public class LettersGame  extends AppCompatActivity {
+
     //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
     private final String KEY_INDEX = "index";
-
 
     GlobalVariables global = new GlobalVariables();
     int count = global.GetCount();
@@ -38,9 +39,6 @@ public class LettersGame  extends AppCompatActivity {
 
         count = getIntent().getIntExtra(KEY_INDEX, count);
 
-        /*if (savedInstanceState != null){
-            count = savedInstanceState.getInt(KEY_INDEX);
-        }*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letters_game);
 
@@ -60,7 +58,6 @@ public class LettersGame  extends AppCompatActivity {
                 .build();
         congrats = completedTaskPool.load(this, R.raw.congrats, 1);
         good_job = completedTaskPool.load(this, R.raw.good_job, 1);
-
 
         if (count < 3) {
 
@@ -85,7 +82,14 @@ public class LettersGame  extends AppCompatActivity {
             Collections.shuffle(choiceList);
 
             String correctAnswer = choiceList.get(i);
-
+    //test using array of textviews
+    //possible to change to buttons if prev doesn't work
+/*
+            TextView[] letterButtons = new TextView[3];
+            letterButtons[0] = findViewById(R.id.random_letter_1);
+            letterButtons[1] = findViewById(R.id.random_letter_2);
+            letterButtons[2] = findViewById(R.id.random_letter_3);
+*/
             letter_1.setText(choiceList.get(2));
             letter_2.setText(choiceList.get(0));
             letter_3.setText(choiceList.get(1));
@@ -95,7 +99,6 @@ public class LettersGame  extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (letter_1.getText() == correctAnswer) {
-                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
 
@@ -117,7 +120,6 @@ public class LettersGame  extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (letter_2.getText() == correctAnswer) {
-                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
 
@@ -138,12 +140,10 @@ public class LettersGame  extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (letter_3.getText() == correctAnswer) {
-                        Toast.makeText(LettersGame.this, "You got it right!!", Toast.LENGTH_SHORT).show();
                         count++;
                         global.SetCount(count);
 
                         completedTaskPool.play(good_job, 1, 1, 0, 0, 1);
-
 
                         Intent intent = new Intent(LettersGame.this, LettersGame.class);
                         intent.putExtra(KEY_INDEX, count);

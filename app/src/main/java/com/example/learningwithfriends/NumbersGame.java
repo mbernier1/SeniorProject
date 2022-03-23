@@ -35,13 +35,6 @@ public class NumbersGame extends AppCompatActivity {
     int lastSelected = -1;
     int matches = 0;
 
-    Button number_1;
-    Button number_2;
-    Button number_3;
-    Button dots_image_1;
-    Button dots_image_2;
-    Button dots_image_3;
-
     private SoundPool completedTaskPool;
     private int congrats, good_job;
 
@@ -100,13 +93,10 @@ public class NumbersGame extends AppCompatActivity {
                 numberButtons[i].setBackgroundResource(randomNumbers.get(i));
                 dotButtons[i].setBackgroundResource(NumbersGameLogic.numbers.get(randomNumbers.get(j)));
 
-                //randomNumbers.get(i) = gets they key
-                //NumbersGameLogic.numbers.get(randomNumbers.get(j)) = gets the value of key(j)
-
                 numberButtons[i].setText("cardback");
                 dotButtons[i].setText("cardback");
-                //buttons[i].setTextSize(0.0F);
-                //buttons2[i].setTextSize(0.0F);
+                numberButtons[i].setTextSize(0.0F);
+                dotButtons[i].setTextSize(0.0F);
                 int finalI = i;
                 int finalJ = j;
                 numberButtons[i].setOnClickListener(view -> {
@@ -132,31 +122,25 @@ public class NumbersGame extends AppCompatActivity {
                         int dotString;
 
                         for (Map.Entry<Integer, Integer> entry : NumbersGameLogic.numbers.entrySet()) {
-                            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-                            dotString = entry.getValue();
 
+                            dotString = entry.getValue();
                             if (NumbersGameLogic.numbers.get(randomNumbers.get(finalJ)) == dotString) {
                                 dotButtons[finalI].setText(entry.getKey().toString());
                             }
                         }
                         numSelected++;
-
                     } else if (dotButtons[finalI].getText() != "cardback") {
 
                         dotButtons[finalI].setText("cardback");
                         numSelected--;
                     }
-
                     if (numSelected == 2) {
                         selected = true;
 
-                        System.out.println("last selected " + lastSelected + " " + numberButtons[lastSelected].getText() +
-                                " current dot button text " + dotButtons[finalI].getText());
+                        String currentDotButton = (String) dotButtons[finalI].getText();
+                        String lastSelectedNumberButton = (String) numberButtons[lastSelected].getText();
 
-                        String test = (String) dotButtons[finalI].getText();
-                        String test2 = (String) numberButtons[lastSelected].getText();
-
-                        if (test.equals(test2)) {
+                        if (currentDotButton.equals(lastSelectedNumberButton)) {
 
                             dotButtons[finalI].setClickable(false);
                             numberButtons[lastSelected].setClickable(false);
@@ -171,14 +155,15 @@ public class NumbersGame extends AppCompatActivity {
                                 count++;
                                 global.SetCount(count);
 
+                                //make this work for safer coding practices
+                                //savedInstanceState.putInt(KEY_INDEX, count);
+                                //onCreate(savedInstanceState);
+
                                 Intent intent = new Intent(NumbersGame.this, NumbersGame.class);
                                 intent.putExtra(KEY_INDEX, count);
                                 startActivity(intent);
                             }
-                            //}
                         }
-
-                        //if(buttons2[finalI].getText()  == buttons[(Integer) NumbersGameLogic.numbers.get(randomNumbers.get(lastSelected))]){
                     } else if (numSelected == 0) {
                         selected = false;
                     }
